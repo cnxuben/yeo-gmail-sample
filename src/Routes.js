@@ -6,6 +6,10 @@ import App from './components/Main'
 import MailListView from './components/MailListView'
 import Container from './components/Container.js'
 
+require('normalize.css/normalize.css');
+require('antd/dist/antd.css')
+require('styles/App.css')
+
 /**
  * Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
  *

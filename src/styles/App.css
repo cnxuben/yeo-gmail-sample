@@ -2,6 +2,11 @@
 body {
   color: #000;
   background: #fff;
+
+  font-size: 14px;
+  font-family: "helvetica neue", Helvetica, Arial, sans-serif;
+  line-height: 16px;
+  letter-spacing: 1px;
 }
 
 .index img {
@@ -19,4 +24,61 @@ body {
   border: 1px solid #000;
   border-width: 1px 0;
   background: #666;
+}
+
+.index{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F2F5F4;
+  box-shadow: 0px -1px 10px 0px #555;
+}
+
+.nav-menu-group{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  color: #777E79;
+}
+
+.nav-menu-group>.user-group{
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu-group>.user-group>div{
+}
+.nav-menu-group>.user-group>.head-portrait>span{
+  width:30px;
+  height:30px;
+  border-radius: 15px;
+  display: inline-block;
+  box-shadow: 0px 2px 5px #555;
+}
+
+/*override antd*/
+.search-group .ant-input{
+  font-family: "helvetia neue";
+  font-size:1rem;
+  line-height: 16px;
+  letter-spacing: 1px;
+  font-weight:100;
+  padding: 15px;
+  padding-left:20px;
+  border-radius: 20px;
+  border: none;
+}
+
+.ant-input::-webkit-input-placeholder{
+  color: #B5BBB7;
+}
+
+.ant-input-preSuffix-wrapper .ant-input-suffix {
+  right: 20px;
+}
+
+.nav-menu-group .anticon{
+  font-size:1.5rem;
 }
