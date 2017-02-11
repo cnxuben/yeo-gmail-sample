@@ -9,8 +9,8 @@ export default {
       window.gapi.auth2.getAuthInstance().isSignedIn.listen((isSignedIn) => {
         console.log('isSignedIn ? ', isSignedIn)
         if (isSignedIn) {
-          console.log('********')
           const route = store.getState().routeParams.route
+          console.log('****** route is: ', route)
           if (route === '') {
             dispatch(actions.routeTo('mailbox'))
           } else {

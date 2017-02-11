@@ -1,3 +1,4 @@
 export default {
-  LOGIN: 'LOGIN'
+  LOGIN: 'LOGIN',
+  LOCATION_CHANGE: '@@router/LOCATION_CHANGE'
 }
