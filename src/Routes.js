@@ -18,13 +18,11 @@ import Container from './components/Container.js'
 const Routes = (
   <MuiThemeProvider>
     <StyleRoot>
-      {/*<Route path="/" compoment={Container}>*/}
       <IndexRoute component={App} />
       <Route path="/mailbox" component={MailListView} />
 {/*        <Route path="/enterAppointment/:params" component={EnterAppointmentView}
           params="s=siteId&j=jobId&a=appointmentId"/>
 */}
-      {/*</Route>*/}
     </StyleRoot>
   </MuiThemeProvider>
 )

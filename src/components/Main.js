@@ -21,7 +21,8 @@ class AppComponent extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+// const mapStateToProps = (state) => {
+const mapStateToProps = () => {
   // return { auth: state.auth, }
   return {}
 }

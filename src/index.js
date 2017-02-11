@@ -10,11 +10,9 @@ import Routes from './Routes'
 import { Provider } from 'react-redux'
 import { syncHistoryWithStore } from 'react-router-redux'
 import actions from './actions'
-import { push } from 'react-router-redux'
 
-// gmail api call
+// gmail api initialize
 window.onload = function () {
-  console.log(window.gapi)
   window.gapi.load('client:auth2', initClient)
 }
 
@@ -44,10 +42,8 @@ function initClient() {
 
 function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
-    store.dispatch(push('/mailbox'))
     console.log('init already login')
-  } else {
-    console.log('not login')
+    store.dispatch(actions.routeTo('mailbox'))
   }
 }
 
