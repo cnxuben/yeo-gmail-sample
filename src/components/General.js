@@ -42,13 +42,29 @@ const mockMailList = [
 ]
 
 class MailListItem extends React.Component{
+  constructor(){
+    super();
+    this.state = {
+      like:false
+    }
+  }
+
+  checkAllToggle(){
+
+  }
+
+  likeToggle = ()=>{
+    this.setState({like:!this.state.like})
+  }
+
   render(){
+    const state = this.state;
     return(
       <div className="mail-list-item">
           <div className="mail-left-group">
-            <Checkbox onChange={()=>{console.log('check')}}></Checkbox>
-            <div className="marked-check">
-              <Icon type="star-o" />
+            <Checkbox onChange={this.checkAllToggle}></Checkbox>
+            <div className="marked-check" onClick={this.likeToggle}>
+              <Icon type="star-o"  style={{color: (state.like? '#ff9a00': 'inherit') }}/>
             </div>
             <div className="portrait">
               <span href="#" style={{background:'url('+ require('../images/sample-portrait.jpg')+')',backgroundSize:'cover'}}> </span>
@@ -83,26 +99,34 @@ class MailListGroup extends React.Component{
 }
 
 export default class GeneralView extends React.Component {
-  state = {
-    onlyLike: false
+  constructor(){
+    super()
+    this.state = {
+      likeAll: false
+    }
   }
+
+  likeAllToggle = ()=>{
+    this.setState({likeAll:!this.state.likeAll})
+  }
+
 
   render() {
     const state = this.state;
     return (
-      <div>
+      <div style={{height:'100%',overflowY:'scroll'}}>
         <div className="mail-menu">
           <div className="menu-left-group">
             <Checkbox onChange={()=>{console.log('check')}}></Checkbox>
-            <div className="marked-check">
-              { this.state.onlyLike? <Icon type="star" />:<Icon type="star-o" />}
+            <div className="marked-check" onClick={this.likeAllToggle} >
+              <Icon type="star-o"  style={{color: (state.likeAll? '#ff9a00': 'inherit') }}/>
             </div>
             <div className="remove-checked">
               <Icon type="delete" />
             </div>
           </div>
           <div className="menu-right-group">
-            <div className="pagination">Page 1</div>
+            {/*<div className="pagination">Page 1</div>*/}
             <div className="mail-calendar">
               <Icon type="calendar" />
             </div>

@@ -19,7 +19,7 @@ const PanelHeader = (props)=>(
 const PanelItem = (props)=>(
   <div className="panel-item">
     <span style={{background:props.color,height:7,width:7,borderRadius:'50%'}}> </span>
-    <span style={{flexGrow:1,paddingLeft:10}}>{props.title}</span>
+    <span style={{flexGrow:1,paddingLeft:10,cursor:'pointer'}}>{props.title}</span>
     <span>{props.newCount}</span>
   </div>
 )
