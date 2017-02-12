@@ -33,6 +33,23 @@ body {
   overflow: hidden;
 }
 
+.main-content{
+  height: calc( 100% - 60px );
+  display: flex;
+  flex-flow:row nowrap;
+}
+.view-container{
+  flex-grow: 1;
+}
+
+.header{
+
+}
+
+.left-menu{
+
+}
+
 /******************* Header *******************/
 .header{
   display: flex;
@@ -65,7 +82,7 @@ body {
   height:30px;
   border-radius: 15px;
   display: inline-block;
-  box-shadow: 0px 2px 5px #555;
+  box-shadow: 0px 2px 5px #777;
 }
 
 .search-group .ant-input{
@@ -94,7 +111,7 @@ body {
 
 /******************* Left aside *******************/
 .left-menu{
-  height: calc( 100% - 60px );
+  height: 100%;
   width: 200px;
   background: #FAFAFA;
   position: relative;
@@ -217,4 +234,87 @@ body {
 .buddles-group .ant-collapse-content > .ant-collapse-content-box {
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+/************ general mail list **************/
+.mail-menu{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  height:60px;
+  padding: 10px 30px;
+  font-size: 16px;
+  color: #B5BBB7;
+}
+
+.menu-left-group{
+  display: inline-flex;
+  line-height: 40px;
+  width: 120px;
+  justify-content: space-around;
+}
+.menu-right-group{
+  display: inline-flex;
+  line-height: 40px;
+  width: 100px;
+  justify-content: space-around;
+}
+
+.mail-group-title{
+  height:60px;
+  padding: 10px 30px;
+  font-size: 13px;
+  color: #555;
+  line-height: 40px;
+  background: rgb(241, 244, 243);
+}
+
+.mail-list-item{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  height:60px;
+  padding: 10px 30px;
+  font-size: 13px;
+  color: #B5BBB7;
+  line-height: 40px;
+  border-bottom: 1px solid #eee;
+  background-color: #FAFBFB;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+.mail-list-item:hover{
+  background-color: #FFFFFF;
+}
+
+.mail-list .mail-list-item .mail-left-group{
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  flex-basis:150px;
+}
+
+
+.mail-list .mail-list-item .mail-right-group{
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  flex-basis: 100px;
+  align-items: center;
+}
+
+.mail-list .mail-list-item .fromName{
+  flex-basis: 12%;
+}
+.mail-list .mail-list-item .brief{
+  flex-grow: 1;
+}
+
+.mail-list .mail-list-item .portrait{line-height: 60px}
+.mail-list .mail-list-item .portrait>span{
+  width:30px;
+  height:30px;
+  border-radius: 15px;
+  display: inline-block;
+  /*box-shadow: 0px 2px 5px #555;*/
 }

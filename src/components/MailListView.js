@@ -57,65 +57,58 @@ class MailListView extends React.Component {
             </div>
           </div>
         </header>
-        <aside className="left-menu">
-          <div className="compose-btn-container">
-            <Button  onClick={e=>{ console.log('Compose') }}><Icon type="edit" />Compose</Button>
-          </div>
-          <div className="inbox-group">
-            <div className="inbox-item inbox">
-              <Icon type="mail" />
-              <span className="inbox-title">Inbox</span>
-              <span className="new-mail-count">2</span>
+        <div className="main-content">
+          <aside className="left-menu">
+            <div className="compose-btn-container">
+              <Button  onClick={e=>{ console.log('Compose') }}><Icon type="edit" />Compose</Button>
             </div>
-            <div className="inbox-item starred">
-              <Icon type="star-o" />
-              <span className="inbox-title">Starred</span>
-              <span className="new-mail-count"></span>
+            <div className="inbox-group">
+              <div className="inbox-item inbox">
+                <Icon type="mail" />
+                <span className="inbox-title">Inbox</span>
+                <span className="new-mail-count">2</span>
+              </div>
+              <div className="inbox-item starred">
+                <Icon type="star-o" />
+                <span className="inbox-title">Starred</span>
+                <span className="new-mail-count"></span>
+              </div>
+              <div className="inbox-item drafts">
+                <Icon type="file-text" />
+                <span className="inbox-title">Drafts</span>
+                <span className="new-mail-count"></span>
+              </div>
+              <div className="inbox-item sent">
+                <Icon type="rocket" />
+                <span className="inbox-title">Sent</span>
+                <span className="new-mail-count"></span>
+              </div>
             </div>
-            <div className="inbox-item drafts">
-              <Icon type="file-text" />
-              <span className="inbox-title">Drafts</span>
-              <span className="new-mail-count"></span>
+            <hr/>
+            <div className="buddles-group">
+              <h5>BUDDLES</h5>
+              <Collapse bordered={false} defaultActiveKey={['1','2','3']}>
+                {mockBuddles.map(item=>{
+                  let {iconType,title,key} = item;
+                  return (
+                    <Panel header={<PanelHeader {...{iconType,title}} />} key={key}>
+                      {item.items.map(subItem=>{
+                        subItem.newCount = subItem.newCount||''
+                        return (
+                          <PanelItem {...subItem}/>
+                        )
+                      })}
+                    </Panel>
+                  )
+                })}
+              </Collapse>
             </div>
-            <div className="inbox-item sent">
-              <Icon type="rocket" />
-              <span className="inbox-title">Sent</span>
-              <span className="new-mail-count"></span>
-            </div>
-          </div>
-          <hr/>
-          <div className="buddles-group">
-            <h5>BUDDLES</h5>
-{/*            <Collapse bordered={false} defaultActiveKey={['1','2','3']}>
-              <Panel header={<PanelHeader iconType="folder" title="Projects"/>} key="1">
-                <PanelItem color="red" title="Larson" newCount='1'/>
-              </Panel>
-              <Panel header={<PanelHeader iconType="rocket" title="Trips"/>} key="2">
-                <p></p>
-              </Panel>
-              <Panel header={<PanelHeader iconType="appstore-o" title="Others"/>} key="3">
-                <p></p>
-              </Panel>
-            </Collapse>*/}
-            <Collapse bordered={false} defaultActiveKey={['1','2','3']}>
-              {mockBuddles.map(item=>{
-                let {iconType,title,key} = item;
-                return (
-                  <Panel header={<PanelHeader {...{iconType,title}} />} key={key}>
-                    {item.items.map(subItem=>{
-                      subItem.newCount = subItem.newCount||''
-                      return (
-                        <PanelItem {...subItem}/>
-                      )
-                    })}
-                  </Panel>
-                )
-              })}
-            </Collapse>
-          </div>
 
-        </aside>
-
+          </aside>
+          <section className="view-container">
+            {this.props.children|| "sub page content here" }
+          </section>
+        </div>
       </div>
     );
   }
