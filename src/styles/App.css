@@ -4,7 +4,8 @@ body {
   background: #fff;
 
   font-size: 14px;
-  font-family: "helvetica neue", Helvetica, Arial, sans-serif;
+  /*font-family: "helvetica neue", Helvetica, Arial, sans-serif;*/
+  font-family: sans-serif;
   line-height: 16px;
   letter-spacing: 1px;
 }
@@ -26,13 +27,22 @@ body {
   background: #666;
 }
 
-.index{
+/******************* Main Layout *******************/
+.main-layout{
+  height:100vh;
+  overflow: hidden;
+}
+
+/******************* Header *******************/
+.header{
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
   background-color: #F2F5F4;
   box-shadow: 0px -1px 10px 0px #555;
+  z-index: 1;
+  position: relative;
 }
 
 .nav-menu-group{
@@ -58,7 +68,6 @@ body {
   box-shadow: 0px 2px 5px #555;
 }
 
-/*override antd*/
 .search-group .ant-input{
   font-family: "helvetia neue";
   font-size:1rem;
@@ -71,14 +80,141 @@ body {
   border: none;
 }
 
-.ant-input::-webkit-input-placeholder{
+.search-group .ant-input::-webkit-input-placeholder{
   color: #B5BBB7;
 }
 
-.ant-input-preSuffix-wrapper .ant-input-suffix {
+.search-group .ant-input-preSuffix-wrapper .ant-input-suffix {
   right: 20px;
 }
 
 .nav-menu-group .anticon{
   font-size:1.5rem;
+}
+
+/******************* Left aside *******************/
+.left-menu{
+  height: calc( 100% - 60px );
+  width: 200px;
+  background: #FAFAFA;
+  position: relative;
+  box-shadow: 8px 0px 10px 0px #eee;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+}
+
+.left-menu hr{
+  margin: 20px 30px 5px;
+  border: 1px solid #EBEFEE;
+}
+
+.compose-btn-container{
+  text-align: center;
+  padding:20px 40px;
+}
+.compose-btn-container>button.ant-btn{
+   width:100%;
+   height:35px;
+   background-color: #FFA318;
+   color: white;
+   box-shadow: 0px 5px 12px -5px #FFA318;
+}
+.compose-btn-container>button.ant-btn:hover{
+  background: #ff9900;
+  border-color: #ff9900;
+  box-shadow: 0px 8px 10px -6px #FFA318;
+}
+
+.compose-btn-container>button.ant-btn-clicked:after{
+  border:0 solid #ff9900;
+}
+
+.inbox-group{
+
+}
+
+.inbox-group .inbox-item{
+  padding: 15px 30px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  color: #B5BBB7;
+  font-family: sans-serif;
+  font-size:13px;
+  letter-spacing: initial;
+  transition: all .6s ease;
+  cursor: pointer;
+}
+
+.inbox-group .inbox-item:hover,.inbox-group .inbox-item.active{
+  color: #777E79;
+}
+
+.inbox-group .inbox-item .anticon{
+
+}
+
+.inbox-group .inbox-item .inbox-title{
+  flex-grow: 1;
+  padding-left: 20px;
+}
+.inbox-group .inbox-item .new-mail-count{
+
+}
+
+.buddles-group{
+  font-size: 13px;
+}
+
+.buddles-group>h5{
+  color: #B5BBB7;
+  padding: 10px 30px;
+  font-weight: bold;
+}
+
+.buddles-group .ant-collapse-borderless{
+  background: transparent;
+
+}
+.buddles-group .ant-collapse > .ant-collapse-item > .ant-collapse-header{
+  color: #B5BBB7;
+  padding: 0 30px;
+}
+.buddles-group  .ant-collapse-borderless > .ant-collapse-item > .ant-collapse-content > .ant-collapse-item > .ant-collapse-content,
+.buddles-group .ant-collapse > .ant-collapse-item,
+.buddles-group .ant-collapse-borderless > .ant-collapse-item > .ant-collapse-content{
+  border:none;
+}
+
+.buddles-group .ant-collapse > .ant-collapse-item > .ant-collapse-header .arrow{
+  display: none;
+}
+
+
+.buddles-group .panel-header{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buddles-group .panel-header .panel-header-title{
+  flex-grow:1;
+  padding-left: 20px;
+}
+
+.buddles-group .panel-item{
+  padding-left:50px;
+  padding-right: 17px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 30px;
+}
+
+.buddles-group .ant-collapse-content > .ant-collapse-content-box {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
