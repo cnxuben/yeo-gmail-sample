@@ -71,9 +71,9 @@ class MailListView extends React.Component {
     messages.length > 0 ? (
       messages.map((value) => {
         this.getMessage(userId, value.id, 'raw', (result) => {
-          console.log(result) // log whole result object
-          console.log(this.decodeUrlSafeBase64(result.raw)) // log whole message <HTML> data
-          console.log(utf8.decode(this.decodeUrlSafeBase64(result.raw))) // log whole email data with utf8 encoding
+          // console.log(result) // log whole result object
+          // console.log(this.decodeUrlSafeBase64(result.raw)) // log whole message <HTML> data
+          // console.log(utf8.decode(this.decodeUrlSafeBase64(result.raw))) // log whole email data with utf8 encoding
         })
       })
     ) : null
