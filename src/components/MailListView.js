@@ -13,7 +13,7 @@ const Search = Input.Search,
 const PanelHeader = (props)=>(
   <div className="panel-header">
     <Icon type={props.iconType} />
-    <span className="panel-header-title">{props.title||'Some Type'}</span>
+    <span className="panel-header-title" onClick={(e)=>{props.toBuddles(e,props.title,null)}}>{props.title||'Some Type'}</span>
     <Icon type="plus-circle-o" />
   </div>
 )
@@ -30,7 +30,9 @@ class MailListView extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      messageAndThreadIds: []
+      messageAndThreadIds: [],
+      viewType:'',
+      viewFilter:''
     }
   }
 
@@ -84,6 +86,20 @@ class MailListView extends React.Component {
     return atob(s.replace(/\-/g, '+').replace(/\_/g, '/'))
   }
 
+  toMailList(type){
+    this.props.router.push(`mailbox/${type}`);
+    this.setState({
+      viewType:'general',
+      viewFilter:'inbox'
+    })
+  }
+
+  toBuddles(e,type,subType){
+   // this.props.router.push(`mailbox/${type}`);
+    e.stopPropagation();
+      console.log(type)
+  }
+
   render() {
     let messages = this.state.messageAndThreadIds.splice(1, 1)
     messages.length > 0 ? (
@@ -101,7 +117,7 @@ class MailListView extends React.Component {
       <div className="main-layout">
         <header className="header" style={styles.container} >
           <div className="icon-group" style={styles.iconGroup}>
-            <span style={{fontSize:18,color:'#7d7d7d'}}><span style={{fontSize:20,color:'#FFA318'}}>B</span>usiness Mail</span>
+            <span style={{fontSize:18,color:'#7d7d7d'}}><span style={{fontSize:20,color:'#1CD67C'}}>B</span>usiness Mail</span>
           </div>
           <div className="search-group" style={styles.searchGroup}>
             <Search
@@ -134,7 +150,7 @@ class MailListView extends React.Component {
               <Button  onClick={e=>{ console.log('Compose') }}><Icon type="edit" />Compose</Button>
             </div>
             <div className="inbox-group">
-              <div className="inbox-item inbox">
+              <div className={`inbox-item inbox ${ this.state.viewFilter === 'inbox'?'active':'' }`}  onClick={ ()=>{this.toMailList('general')}}>
                 <Icon type="mail" />
                 <span className="inbox-title">Inbox</span>
                 <span className="new-mail-count">2</span>
@@ -162,7 +178,7 @@ class MailListView extends React.Component {
                 {mockBuddles.map(item=>{
                   let {iconType,title,key} = item;
                   return (
-                    <Panel header={<PanelHeader {...{iconType,title}} />} key={key}>
+                    <Panel header={<PanelHeader {...{iconType,title}} toBuddles={this.toBuddles}/>}  key={key}>
                       {item.items.map(subItem=>{
                         subItem.newCount = subItem.newCount||''
                         return (
