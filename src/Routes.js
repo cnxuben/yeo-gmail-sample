@@ -4,7 +4,12 @@ import { StyleRoot } from 'radium'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import App from './components/Main'
 import MailListView from './components/MailListView'
+import GeneralView from './components/General'
 import Container from './components/Container.js'
+
+require('normalize.css/normalize.css');
+require('antd/dist/antd.css')
+require('styles/App.css')
 
 /**
  * Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
@@ -19,7 +24,9 @@ const Routes = (
   <MuiThemeProvider>
     <StyleRoot>
       <Route path="/" component={App} />
-      <Route path="/mailbox" component={MailListView} />
+      <Route path="/mailbox" component={MailListView}>
+        <Route path="general" component={GeneralView}/>
+      </Route>
 {/*        <Route path="/enterAppointment/:params" component={EnterAppointmentView}
           params="s=siteId&j=jobId&a=appointmentId"/>
 */}

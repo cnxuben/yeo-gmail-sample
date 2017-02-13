@@ -2,6 +2,12 @@
 body {
   color: #000;
   background: #fff;
+
+  font-size: 14px;
+  /*font-family: "helvetica neue", Helvetica, Arial, sans-serif;*/
+  font-family: sans-serif;
+  line-height: 16px;
+  letter-spacing: 1px;
 }
 
 .index img {
@@ -19,4 +25,328 @@ body {
   border: 1px solid #000;
   border-width: 1px 0;
   background: #666;
+}
+
+/******************* Main Layout *******************/
+.main-layout{
+  height:100vh;
+  overflow: hidden;
+}
+
+.main-content{
+  height: calc( 100% - 60px );
+  display: flex;
+  flex-flow:row nowrap;
+}
+.view-container{
+  flex-grow: 1;
+}
+
+.header{
+
+}
+
+.left-menu{
+
+}
+
+::-webkit-scrollbar
+{
+  width: 5px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-track
+{
+  border-radius: 5px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  border-radius: 5px;
+  background-color: #cac9c9;
+}
+
+/******************* Header *******************/
+.header{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F2F5F4;
+  box-shadow: 0px -1px 10px 0px #555;
+  z-index: 1;
+  position: relative;
+}
+
+.nav-menu-group{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  color: #777E79;
+}
+
+.nav-menu-group>.user-group{
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu-group>.user-group>div{
+}
+.nav-menu-group>.user-group>.head-portrait>span{
+  width:30px;
+  height:30px;
+  border-radius: 15px;
+  display: inline-block;
+  box-shadow: 0px 2px 5px #777;
+}
+
+.search-group .ant-input{
+  font-family: "helvetia neue";
+  font-size:1rem;
+  line-height: 16px;
+  letter-spacing: 1px;
+  font-weight:100;
+  padding: 15px;
+  padding-left:20px;
+  border-radius: 20px;
+  border: none;
+}
+
+.search-group .ant-input::-webkit-input-placeholder{
+  color: #B5BBB7;
+}
+
+.search-group .ant-input-preSuffix-wrapper .ant-input-suffix {
+  right: 20px;
+}
+
+.nav-menu-group .anticon{
+  font-size:1.5rem;
+}
+
+/******************* Left aside *******************/
+.left-menu{
+  height: 100%;
+  width: 200px;
+  background: #FAFAFA;
+  position: relative;
+  box-shadow: 8px 0px 10px 0px #eee;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+}
+
+.left-menu hr{
+  margin: 20px 30px 5px;
+  border: 1px solid #EBEFEE;
+}
+
+.compose-btn-container{
+  text-align: center;
+  padding:20px 40px;
+}
+.compose-btn-container>button.ant-btn{
+   width:100%;
+   height:35px;
+   background-color: #FFA318;
+   color: white;
+   box-shadow: 0px 5px 12px -5px #FFA318;
+}
+.compose-btn-container>button.ant-btn:hover{
+  background: #ff9900;
+  border-color: #ff9900;
+  box-shadow: 0px 8px 10px -6px #FFA318;
+}
+
+.compose-btn-container>button.ant-btn-clicked:after{
+  border:0 solid #ff9900;
+}
+
+.inbox-group{
+
+}
+
+.inbox-group .inbox-item{
+  padding: 15px 30px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  color: #B5BBB7;
+  font-family: sans-serif;
+  font-size:13px;
+  letter-spacing: initial;
+  transition: all .6s ease;
+  cursor: pointer;
+}
+
+.inbox-group .inbox-item:hover,.inbox-group .inbox-item.active{
+  color: #777E79;
+}
+
+.inbox-group .inbox-item .anticon{
+
+}
+
+.inbox-group .inbox-item .inbox-title{
+  flex-grow: 1;
+  padding-left: 20px;
+}
+.inbox-group .inbox-item .new-mail-count{
+
+}
+
+.buddles-group{
+  font-size: 13px;
+}
+
+.buddles-group>h5{
+  color: #B5BBB7;
+  padding: 10px 30px;
+  font-weight: bold;
+}
+
+.buddles-group .ant-collapse-borderless{
+  background: transparent;
+
+}
+.buddles-group .ant-collapse > .ant-collapse-item > .ant-collapse-header{
+  color: #B5BBB7;
+  padding: 0 30px;
+}
+.buddles-group  .ant-collapse-borderless > .ant-collapse-item > .ant-collapse-content > .ant-collapse-item > .ant-collapse-content,
+.buddles-group .ant-collapse > .ant-collapse-item,
+.buddles-group .ant-collapse-borderless > .ant-collapse-item > .ant-collapse-content{
+  border:none;
+}
+
+.buddles-group .ant-collapse > .ant-collapse-item > .ant-collapse-header .arrow{
+  display: none;
+}
+
+
+.buddles-group .panel-header{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buddles-group .panel-header .panel-header-title{
+  flex-grow:1;
+  padding-left: 20px;
+}
+
+.buddles-group .panel-item{
+  padding-left:50px;
+  padding-right: 17px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 30px;
+  transition: all .5s ease;
+}
+
+.buddles-group .panel-item:hover,.buddles-group .panel-item.active{
+  color: black;
+}
+
+.buddles-group .ant-collapse-content > .ant-collapse-content-box {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/************ general mail list **************/
+.mail-menu{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  height:60px;
+  padding: 10px 30px;
+  font-size: 16px;
+  color: #B5BBB7;
+}
+
+.mail-menu  .menu-left-group>div{
+  cursor: pointer;
+}
+
+.menu-left-group{
+  display: inline-flex;
+  line-height: 40px;
+  width: 120px;
+  justify-content: space-around;
+}
+.menu-right-group{
+  display: inline-flex;
+  line-height: 40px;
+  width: 100px;
+  justify-content: flex-end;
+}
+
+.mail-group-title{
+  height:60px;
+  padding: 10px 30px;
+  font-size: 13px;
+  color: #555;
+  line-height: 40px;
+  background: rgb(241, 244, 243);
+  font-weight: bold;
+  letter-spacing: initial;
+}
+
+.mail-list-item{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  height:60px;
+  padding: 10px 30px;
+  font-size: 13px;
+  color: #B5BBB7;
+  line-height: 40px;
+  border-bottom: 1px solid #eee;
+  background-color: #FAFBFB;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+.mail-list-item:hover{
+  background-color: #FFFFFF;
+}
+
+.mail-list .mail-list-item .mail-left-group{
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  flex-basis:150px;
+}
+
+
+.mail-list .mail-list-item .mail-right-group{
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  flex-basis: 100px;
+  align-items: center;
+}
+
+.mail-list .mail-list-item .fromName{
+  flex-basis: 12%;
+  overflow: hidden;
+}
+.mail-list .mail-list-item .brief{
+  flex-grow: 1;
+  padding: 0 20px;
+  overflow: hidden;
+}
+
+.mail-list .mail-list-item .portrait{line-height: 60px}
+.mail-list .mail-list-item .portrait>span{
+  width:30px;
+  height:30px;
+  border-radius: 15px;
+  display: inline-block;
+  /*box-shadow: 0px 2px 5px #555;*/
 }
