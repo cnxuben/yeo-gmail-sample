@@ -177,7 +177,7 @@ class MailListView extends React.Component {
 
           </aside>
           <section className="view-container">
-            {this.props.children|| "sub page content here" }
+            {this.props.children|| <button onClick={this.props.listThreads} >try api here</button> }
           </section>
         </div>
       </div>
