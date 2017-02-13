@@ -2,10 +2,11 @@ require('normalize.css/normalize.css')
 require('styles/App.css')
 
 import React from 'react'
-// import actions from '../actions'
+import actions from '../actions'
 import { connect } from 'react-redux'
 import utf8 from 'utf8'
-const userId = 'singh.raghverndra@businessos.net'
+// const userId = 'singh.raghverndra@businessos.net'
+const userId = 'me'
 
 class MailListView extends React.Component {
   constructor(props, context) {
@@ -82,19 +83,21 @@ class MailListView extends React.Component {
         {
 
         }
+        <button onClick={this.props.listThreads} >try api here</button>
       </div>
     );
   }
 }
 
-const mapStateToProps = () => {
-  // return { auth: state.auth, }
+const mapStateToProps = (state) => {
   return {
+    threads: state.threads
   }
 }
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
   return {
+    listThreads: () => dispatch(actions.listThreads())
   }
 }
 

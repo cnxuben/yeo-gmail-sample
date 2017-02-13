@@ -13,6 +13,7 @@ import actions from './actions'
 
 // gmail api initialize
 window.onload = function () {
+  console.log('before loading')
   window.gapi.load('client:auth2', initClient)
 }
 

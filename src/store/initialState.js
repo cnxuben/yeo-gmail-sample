@@ -1,5 +1,5 @@
 export default {
-  // threads: [],
+  threads: {}
   // messages: [],
   // labels: [],
   // isLogin: false
