@@ -36,13 +36,19 @@ class MailListView extends React.Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this.listMessages(userId, 'businessos', (results) => {
-        this.setState({
-          messageAndThreadIds: results
-        })
-      })
-    }, 3000)
+      // this.listMessages(userId, 'businessos', (results) => {
+      //   this.setState({
+      //     messageAndThreadIds: results
+      //   })
+      // })
+      this.props.listThreads()
+    }, 2000)
   }
+
+  // no idea how to get rid of infinite loop
+  // componentDidUpdate() {
+  //   this.props.listThreads()
+  // }
 
   listMessages(userId, query, callback) {
     let getPageOfMessages = (request, result) => {
@@ -84,19 +90,50 @@ class MailListView extends React.Component {
     return atob(s.replace(/\-/g, '+').replace(/\_/g, '/'))
   }
 
-  render() {
-    let messages = this.state.messageAndThreadIds.splice(1, 1)
-    messages.length > 0 ? (
-      messages.map((value) => {
-        this.getMessage(userId, value.id, 'raw', (result) => {
-          // console.log(result) // log whole result object
-          // console.log(this.decodeUrlSafeBase64(result.raw)) // log whole message <HTML> data
-          // console.log(utf8.decode(this.decodeUrlSafeBase64(result.raw))) // log whole email data with utf8 encoding
-        })
+  updateBuddles() {
+    if (this.props.tags && this.props.tags.length > 0) {
+      let itemCount = {}
+      let labelList = []
+      let projectItems = []
+      this.props.tags.forEach((tag) => {
+        if (labelList.indexOf(tag.name) < 0) {
+          labelList.push(tag.name)
+          projectItems.push({
+            key: labelList.length,
+            color: colorList[labelList.length - 1],
+            title: tag.name,
+            newCount: 1
+          })
+        } else {
+          projectItems[labelList.indexOf(tag.name)].newCount++
+        }
+        console.log('tag Naaaaaaame: ', tag.name)
+        console.log(projectItems)
       })
-    ) : null
+      console.log('-------: ', projectItems)
+      return projectItems
+    }
+  }
 
-      // <button onClick={this.props.listThreads} >try api here</button>
+  render() {
+    // let messages = this.state.messageAndThreadIds.splice(1, 1)
+    // messages.length > 0 ? (
+    //   messages.map((value) => {
+    //     this.getMessage(userId, value.id, 'raw', (result) => {
+    //       console.log(result) // log whole result object
+    //       console.log(this.decodeUrlSafeBase64(result.raw)) // log whole message <HTML> data
+    //       console.log(utf8.decode(this.decodeUrlSafeBase64(result.raw))) // log whole email data with utf8 encoding
+    //     })
+    //   })
+    // ) : null
+
+    const threads = this.props.threads
+    const tags = this.props.tags
+    mockBuddles[0].items = this.updateBuddles()
+    // console.log(this.updateBuddles())
+    // console.log('this.props.threads: ', this.props.threads)
+    console.log('this.props.tags: ', this.props.tags)
+
     return (
       <div className="main-layout">
         <header className="header" style={styles.container} >
@@ -163,12 +200,14 @@ class MailListView extends React.Component {
                   let {iconType,title,key} = item;
                   return (
                     <Panel header={<PanelHeader {...{iconType,title}} />} key={key}>
-                      {item.items.map(subItem=>{
-                        subItem.newCount = subItem.newCount||''
-                        return (
-                          <PanelItem {...subItem}/>
-                        )
-                      })}
+                      {
+                        item.items ? item.items.map(subItem=>{
+                          subItem.newCount = subItem.newCount||''
+                          return (
+                            <PanelItem {...subItem}/>
+                          )
+                        }) : null
+                      }
                     </Panel>
                   )
                 })}
@@ -176,10 +215,10 @@ class MailListView extends React.Component {
             </div>
 
           </aside>
-          <section className="view-container">
+{/*          <section className="view-container">
             {this.props.children|| <button onClick={this.props.listThreads} >try api here</button> }
           </section>
-        </div>
+*/}        </div>
       </div>
     );
   }
@@ -187,7 +226,8 @@ class MailListView extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    threads: state.threads
+    threads: state.threads,
+    tags: state.tags
   }
 }
 
@@ -217,25 +257,26 @@ const styles = {
   }
 }
 
-const mockBuddles = [
+let mockBuddles = [
   {
     title:'Projects',
     iconType:'folder',
     key:1,
-    items:[
-      {
-        key:1,
-        color:'rgb(254, 153, 15)',
-        title:'Larson',
-        newCount:1
-      },{
-        key:2,
-        color:'red',
-        title:'MWC',
-        newCount:9
-      }
-    ]
-  },{
+    // items:[
+    //   {
+    //     key:1,
+    //     color:'rgb(254, 153, 15)',
+    //     title:'Larson',
+    //     newCount:1
+    //   },{
+    //     key:2,
+    //     color:'red',
+    //     title:'MWC',
+    //     newCount:9
+    //   }
+    // ]
+  },
+  {
     title:'Trips',
     iconType:'rocket',
     key:2,
@@ -247,7 +288,8 @@ const mockBuddles = [
         newCount:0
       }
     ]
-  },{
+  },
+  {
     title:'Others',
     iconType:'appstore-o',
     key:3,
@@ -260,7 +302,16 @@ const mockBuddles = [
       }
     ]
   }
+]
 
+const colorList = [
+  'rgb(254, 153, 15)',
+  'red',
+  'yellow',
+  'purple',
+  'pink',
+  'blue',
+  'green'
 ]
 
 export default connect(mapStateToProps, mapDispatchToProps)(MailListView)
