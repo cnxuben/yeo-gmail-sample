@@ -47,10 +47,6 @@ class MailListView extends React.Component {
     }, 2000)
   }
 
-  componentWillUpdate() {
-    mockBuddles[0].items = this.updateBuddles()
-  }
-
   // no idea how to get rid of infinite loop
   // componentDidUpdate() {
   //   this.props.listThreads()
@@ -139,6 +135,8 @@ class MailListView extends React.Component {
 
     // const threads = this.props.threads
     // const tags = this.props.tags
+    mockBuddles[0].items = this.updateBuddles()
+    // console.log(this.updateBuddles())
     // console.log('this.props.threads: ', this.props.threads)
     // console.log('this.props.tags: ', this.props.tags)
 
@@ -223,10 +221,10 @@ class MailListView extends React.Component {
             </div>
 
           </aside>
-          <section className="view-container">
+{/*          <section className="view-container">
             {this.props.children|| <button onClick={this.props.listThreads} >try api here</button> }
           </section>
-        </div>
+*/}        </div>
       </div>
     );
   }
