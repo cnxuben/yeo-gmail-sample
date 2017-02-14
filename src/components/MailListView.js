@@ -221,10 +221,10 @@ class MailListView extends React.Component {
             </div>
 
           </aside>
-{/*          <section className="view-container">
+          <section className="view-container">
             {this.props.children|| <button onClick={this.props.listThreads} >try api here</button> }
           </section>
-*/}        </div>
+        </div>
       </div>
     );
   }
