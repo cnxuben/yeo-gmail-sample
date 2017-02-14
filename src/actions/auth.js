@@ -1,6 +1,4 @@
-import A from '../const/actionTypes'
 import actions from '.'
-import store from '../store'
 
 export default {
   listenGmailLogin: () => {
@@ -9,14 +7,14 @@ export default {
       window.gapi.auth2.getAuthInstance().isSignedIn.listen((isSignedIn) => {
         console.log('isSignedIn ? ', isSignedIn)
         if (isSignedIn) {
-          const route = store.getState().routeParams.route
+          const route = getState().routeParams.route
           console.log('****** route is: ', route)
           if (route === '') {
             dispatch(actions.routeTo('mailbox'))
           } else {
             dispatch(actions.routeTo(
               route,
-              store.getState().routeParams
+              getState().routeParams
             ))
           }
 
@@ -26,7 +24,7 @@ export default {
     }
   },
   tryLogin: () => {
-    return (dispatch, getState) => {
+    return () => {
       window.gapi.auth2.getAuthInstance().signIn()
       .then((authResult) => {
         if (authResult && !authResult.error) {

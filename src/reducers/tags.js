@@ -9,7 +9,14 @@ export default (currentState, action) => {
         name: action.tag.name,
         threadId: action.threadId
       })
-      console.log('RECEIVE_THREADS reducers', updatedState)
+      // console.log('RECEIVE_TAG reducers', updatedState)
+      break
+    case A.UPDATE_TAG:
+      updatedState[action.index] = Object.assign(
+        {},
+        action.updateData,
+        updatedState[action.index]
+      )
       break
   }
   return updatedState || {}
