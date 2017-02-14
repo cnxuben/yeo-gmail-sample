@@ -1,9 +1,10 @@
 import strUtil from './strUtil'
+import moment from 'moment'
 
 export default {
   extractThreadInfo: (respThread) => {
     if (!respThread) {
-      console.log('invalid thread: ', respThread)
+      // console.log('invalid thread: ', respThread)
       return
     }
 
@@ -18,12 +19,13 @@ export default {
     thread.subject = respThread.messages[0].payload.headers[subjectIndex].value
     thread.msgCount = respThread.messages.length
     // pst timestamp of the last msg
-    const lastUpatedAtIndex = respThread.messages[thread.msgCount - 1].payload
+    const lastUpdatedAtIndex = respThread.messages[thread.msgCount - 1].payload
       .headers.findIndex((header) => {
         return 'Received' === header.name
       })
-    thread.lastUpatedAt = respThread.messages[thread.msgCount - 1].payload
-      .headers[lastUpatedAtIndex].value.split(';')[1].trim()
+    thread.lastUpdatedAt = respThread.messages[thread.msgCount - 1].payload
+      .headers[lastUpdatedAtIndex].value.split(';')[1].trim()
+    thread.formatUpdateTime = moment(thread.lastUpdatedAt).format('MMM DD')
     thread.labels = respThread.messages[thread.msgCount - 1].labelIds
     thread.membersNum = respThread.messages.map((msg) => {
       msg.payload.headers.forEach((header) => {
@@ -75,8 +77,11 @@ function formatFromName(rawdata) {
 
 function addTagToThread(respThread, sender) {
   // hard code here
-  // only regard email from do-not-reply@trello.com as project
-  if (sender !== 'do-not-reply@trello.com') {
+  // regard email from the email following as project
+  //  do-not-reply@trello.com
+  //  invitation-do-not-reply@trello.com
+  if (sender !== 'do-not-reply@trello.com' &&
+      sender !== 'invitation-do-not-reply@trello.com') {
     // console.log('sender is not do-not-reply@trello.com')
     return null
   }

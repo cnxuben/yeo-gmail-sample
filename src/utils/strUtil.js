@@ -10,6 +10,9 @@ export default {
     const template = regExpTemplate[templateMode]
     const matchStart = template.startMode.exec(rawStr)
     const matchEnd = template.endMode.exec(rawStr)
+    if (!matchStart || !matchEnd) {
+      return ''
+    }
     const startIndex = matchStart.index + matchStart[0].length + 1
     const endIndex = matchEnd.index + matchEnd[0].length - 2
     // console.log('start letter: ', rawStr[startIndex])

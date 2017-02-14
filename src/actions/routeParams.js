@@ -1,7 +1,6 @@
 import { push } from 'react-router-redux'
 import A from '../const/actionTypes'
 import P from '../const/routeParamTypes'
-import actions from '.'
 
 const encodeParams = (routeParams) => {
   let paramsString = ''
@@ -22,7 +21,7 @@ export default {
     route,
     params
   ) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
       let path = '/' + route
       if (params) {
         path += '/' + encodeParams(params)

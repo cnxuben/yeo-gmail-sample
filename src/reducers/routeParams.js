@@ -11,9 +11,10 @@ export default (currentState, action) => {
       }
       if (pathSegments.length > 2) {
         const paramSegments = pathSegments[2].split('&')
-        paramSegments.map((paramSegment) => {
-          const keyAndValue = paramSegment.split('=')
-          // updatedState[P[keyAndValue[0]]] = keyAndValue[1]
+        paramSegments.map(() => {
+        // paramSegments.map((paramSegment) => {
+        //   const keyAndValue = paramSegment.split('=')
+        //   updatedState[P[keyAndValue[0]]] = keyAndValue[1]
         })
       }
       break
