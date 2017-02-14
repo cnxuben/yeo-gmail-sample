@@ -107,10 +107,7 @@ class MailListView extends React.Component {
         } else {
           projectItems[labelList.indexOf(tag.name)].newCount++
         }
-        console.log('tag Naaaaaaame: ', tag.name)
-        console.log(projectItems)
       })
-      console.log('-------: ', projectItems)
       return projectItems
     }
   }
@@ -132,7 +129,7 @@ class MailListView extends React.Component {
     mockBuddles[0].items = this.updateBuddles()
     // console.log(this.updateBuddles())
     // console.log('this.props.threads: ', this.props.threads)
-    console.log('this.props.tags: ', this.props.tags)
+    // console.log('this.props.tags: ', this.props.tags)
 
     return (
       <div className="main-layout">

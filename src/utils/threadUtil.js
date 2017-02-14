@@ -112,5 +112,10 @@ function getProjectName(emailContent) {
   }
 
   name = strUtil.getSubstringByRegExp('trelloBoard', emailContent)
+  if (name) {
+    return name
+  }
+
+  name = strUtil.getSubstringByRegExp('trelloInvite', emailContent)
   return name ? name : ''
 }

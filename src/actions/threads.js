@@ -21,11 +21,8 @@ export default {
       sortedKeys.map((sortKey) => {
         sortedThreads[sortKey] = threads[sortKey]
       })
-      console.log('sortedKeys: ', sortedKeys)
-      console.log('sorted threads result: ', sortedThreads)
-      Object.keys(sortedThreads).forEach((sortKey) => {
-        console.log(sortedThreads[sortKey].lastUpdatedAt, sortedThreads[sortKey].formatUpdateTime)
-      })
+      // console.log('sortedKeys: ', sortedKeys)
+      // console.log('sorted threads result: ', sortedThreads)
       dispatch({
         type: A.SORT_THREADS,
         sortedThreads
