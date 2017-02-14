@@ -5,6 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import App from './components/Main'
 import MailListView from './components/MailListView'
 import GeneralView from './components/General'
+import ProjectsView from './components/Projects'
 import Container from './components/Container.js'
 
 require('normalize.css/normalize.css');
@@ -26,6 +27,7 @@ const Routes = (
       <Route path="/" component={App} />
       <Route path="/mailbox" component={MailListView}>
         <Route path="general" component={GeneralView}/>
+        <Route path="project" component={ProjectsView} />
       </Route>
 {/*        <Route path="/enterAppointment/:params" component={EnterAppointmentView}
           params="s=siteId&j=jobId&a=appointmentId"/>

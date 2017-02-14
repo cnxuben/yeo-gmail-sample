@@ -99,8 +99,8 @@ class MailListGroup extends React.Component{
 }
 
 export default class GeneralView extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       likeAll: false
     }

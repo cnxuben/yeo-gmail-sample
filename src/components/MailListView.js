@@ -13,7 +13,7 @@ const Search = Input.Search,
 const PanelHeader = (props)=>(
   <div className="panel-header">
     <Icon type={props.iconType} />
-    <span className="panel-header-title" onClick={(e)=>{props.toBuddles(e,props.title,null)}}>{props.title||'Some Type'}</span>
+    <span className="panel-header-title" onClick={(e)=>{props.toProjects(e,props.title,null)}}>{props.title||'Some Type'}</span>
     <Icon type="plus-circle-o" />
   </div>
 )
@@ -21,7 +21,9 @@ const PanelHeader = (props)=>(
 const PanelItem = (props)=>(
   <div className="panel-item">
     <span style={{background:props.color,height:7,width:7,borderRadius:'50%'}}> </span>
-    <span style={{flexGrow:1,paddingLeft:10,cursor:'pointer'}}>{props.title}</span>
+    <span style={{flexGrow:1,paddingLeft:10,cursor:'pointer'}} onClick={(e)=>{props.toProjects(e,props.parentTitle,props.title)}}>
+      {props.title}
+      </span>
     <span>{props.newCount}</span>
   </div>
 )
@@ -87,17 +89,24 @@ class MailListView extends React.Component {
   }
 
   toMailList(type){
-    this.props.router.push(`mailbox/${type}`);
+    this.props.router.replace(`mailbox/${type}`);
     this.setState({
       viewType:'general',
       viewFilter:'inbox'
     })
   }
 
-  toBuddles(e,type,subType){
-   // this.props.router.push(`mailbox/${type}`);
+  toProjects(e,type,subType){
     e.stopPropagation();
-      console.log(type)
+    //this.props.router.push(`mailbox/project`);
+      console.log(type,subType)
+      // this.setState({
+      //   viewType:type,
+      //   viewFilter:{
+      //     type:'',
+      //     subType:''
+      //   }
+      // })
   }
 
   render() {
@@ -178,11 +187,11 @@ class MailListView extends React.Component {
                 {mockBuddles.map(item=>{
                   let {iconType,title,key} = item;
                   return (
-                    <Panel header={<PanelHeader {...{iconType,title}} toBuddles={this.toBuddles}/>}  key={key}>
+                    <Panel header={<PanelHeader {...{iconType,title}} toProjects={this.toProjects}/>}  key={key}>
                       {item.items.map(subItem=>{
                         subItem.newCount = subItem.newCount||''
                         return (
-                          <PanelItem {...subItem}/>
+                          <PanelItem {...subItem} parentTitle={title} toProjects={this.toProjects}/>
                         )
                       })}
                     </Panel>
