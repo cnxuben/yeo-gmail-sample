@@ -2,9 +2,11 @@ import React from 'react';
 import actions from '../actions'
 import { connect } from 'react-redux'
 import { Input, Icon, Button, Collapse } from 'antd'
-import utf8 from 'utf8'
+import store from '../store'
+import A from '../const/actionTypes'
+// import utf8 from 'utf8'
 // const userId = 'singh.raghverndra@businessos.net'
-const userId = 'me'
+// const userId = 'me'
 
 const Search = Input.Search,
   Panel = Collapse.Panel;
@@ -43,6 +45,10 @@ class MailListView extends React.Component {
       // })
       this.props.listThreads()
     }, 2000)
+  }
+
+  componentWillUpdate() {
+    mockBuddles[0].items = this.updateBuddles()
   }
 
   // no idea how to get rid of infinite loop
@@ -92,10 +98,9 @@ class MailListView extends React.Component {
 
   updateBuddles() {
     if (this.props.tags && this.props.tags.length > 0) {
-      let itemCount = {}
       let labelList = []
       let projectItems = []
-      this.props.tags.forEach((tag) => {
+      this.props.tags.forEach((tag, index) => {
         if (labelList.indexOf(tag.name) < 0) {
           labelList.push(tag.name)
           projectItems.push({
@@ -107,6 +112,14 @@ class MailListView extends React.Component {
         } else {
           projectItems[labelList.indexOf(tag.name)].newCount++
         }
+
+        // store.dispatch({
+        //   type: A.UPDATE_TAG,
+        //   updateData: {
+        //     color: projectItems[labelList.indexOf(tag.name)].color
+        //   },
+        //   index
+        // })
       })
       return projectItems
     }
@@ -124,10 +137,8 @@ class MailListView extends React.Component {
     //   })
     // ) : null
 
-    const threads = this.props.threads
-    const tags = this.props.tags
-    mockBuddles[0].items = this.updateBuddles()
-    // console.log(this.updateBuddles())
+    // const threads = this.props.threads
+    // const tags = this.props.tags
     // console.log('this.props.threads: ', this.props.threads)
     // console.log('this.props.tags: ', this.props.tags)
 
@@ -165,7 +176,7 @@ class MailListView extends React.Component {
         <div className="main-content">
           <aside className="left-menu">
             <div className="compose-btn-container">
-              <Button  onClick={e=>{ console.log('Compose') }}><Icon type="edit" />Compose</Button>
+              <Button  onClick={e =>{ console.log('Compose', e) }}><Icon type="edit" />Compose</Button>
             </div>
             <div className="inbox-group">
               <div className="inbox-item inbox">
@@ -212,10 +223,10 @@ class MailListView extends React.Component {
             </div>
 
           </aside>
-{/*          <section className="view-container">
+          <section className="view-container">
             {this.props.children|| <button onClick={this.props.listThreads} >try api here</button> }
           </section>
-*/}        </div>
+        </div>
       </div>
     );
   }
@@ -250,7 +261,7 @@ const styles = {
   searchBar: {
   },
   navMenu:{
-    minWidth: '20vw',
+    minWidth: '20vw'
   }
 }
 
@@ -258,7 +269,7 @@ let mockBuddles = [
   {
     title:'Projects',
     iconType:'folder',
-    key:1,
+    key: 1
     // items:[
     //   {
     //     key:1,
