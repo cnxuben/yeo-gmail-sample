@@ -130,7 +130,7 @@ body {
 /******************* Left aside *******************/
 .left-menu{
   height: 100%;
-  width: 200px;
+  width: 300px;
   background: #FAFAFA;
   position: relative;
   box-shadow: 8px 0px 10px 0px #eee;
@@ -338,7 +338,7 @@ body {
   overflow: hidden;
 }
 .mail-list .mail-list-item .brief{
-  flex-grow: 1;
+  flex-basis: 70%;
   padding: 0 20px;
   overflow: hidden;
 }

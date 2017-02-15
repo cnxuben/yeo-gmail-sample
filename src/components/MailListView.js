@@ -15,7 +15,7 @@ const Search = Input.Search,
 const PanelHeader = (props)=>(
   <div className="panel-header">
     <Icon type={props.iconType} />
-    <span className="panel-header-title" onClick={(e)=>{props.toProjects(e,props.title,null)}}>{props.title||'Some Type'}</span>
+    <span className="panel-header-title" >{props.title||'Some Type'}</span>
     <Icon type="plus-circle-o" />
   </div>
 )
@@ -23,7 +23,7 @@ const PanelHeader = (props)=>(
 const PanelItem = (props)=>(
   <div className="panel-item">
     <span style={{background:props.color,height:7,width:7,borderRadius:'50%'}}> </span>
-    <span style={{flexGrow:1,paddingLeft:10,cursor:'pointer'}} onClick={(e)=>{props.toProjects(e,props.parentTitle,props.title)}}>
+    <span style={{flexGrow:1,paddingLeft:10,cursor:'pointer'}} >
       {props.title}
       </span>
     <span>{props.newCount}</span>
