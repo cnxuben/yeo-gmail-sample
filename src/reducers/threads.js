@@ -15,6 +15,10 @@ export default (currentState, action) => {
       )
       // console.log('UPDATE_THREAD reducers', updatedState)
       break
+    case A.SORT_THREADS:
+      updatedState = Object.assign({}, action.sortedThreads)
+      // console.log('SORT_THREADS: ', updatedState)
+      break
   }
-  return updatedState
+  return updatedState || {}
 }

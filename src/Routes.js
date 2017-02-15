@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router'
+import { Route, IndexRoute } from 'react-router'
 import { StyleRoot } from 'radium'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import App from './components/Main'
@@ -26,7 +26,7 @@ const Routes = (
     <StyleRoot>
       <Route path="/" component={App} />
       <Route path="/mailbox" component={MailListView}>
-        <Route path="general" component={GeneralView}/>
+        <IndexRoute component={GeneralView}/>
         <Route path="project" component={ProjectsView} />
       </Route>
 {/*        <Route path="/enterAppointment/:params" component={EnterAppointmentView}

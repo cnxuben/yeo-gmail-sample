@@ -2,9 +2,11 @@ import React from 'react';
 import actions from '../actions'
 import { connect } from 'react-redux'
 import { Input, Icon, Button, Collapse } from 'antd'
-import utf8 from 'utf8'
+import store from '../store'
+import A from '../const/actionTypes'
+// import utf8 from 'utf8'
 // const userId = 'singh.raghverndra@businessos.net'
-const userId = 'me'
+// const userId = 'me'
 
 const Search = Input.Search,
   Panel = Collapse.Panel;
@@ -40,13 +42,19 @@ class MailListView extends React.Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this.listMessages(userId, 'businessos', (results) => {
-        this.setState({
-          messageAndThreadIds: results
-        })
-      })
-    }, 3000)
+      // this.listMessages(userId, 'businessos', (results) => {
+      //   this.setState({
+      //     messageAndThreadIds: results
+      //   })
+      // })
+      this.props.listThreads()
+    }, 2000)
   }
+
+  // no idea how to get rid of infinite loop
+  // componentDidUpdate() {
+  //   this.props.listThreads()
+  // }
 
   listMessages(userId, query, callback) {
     let getPageOfMessages = (request, result) => {
@@ -88,6 +96,35 @@ class MailListView extends React.Component {
     return atob(s.replace(/\-/g, '+').replace(/\_/g, '/'))
   }
 
+  updateBuddles() {
+    if (this.props.tags && this.props.tags.length > 0) {
+      let labelList = []
+      let projectItems = []
+      this.props.tags.forEach((tag, index) => {
+        if (labelList.indexOf(tag.name) < 0) {
+          labelList.push(tag.name)
+          projectItems.push({
+            key: labelList.length,
+            color: colorList[labelList.length - 1],
+            title: tag.name,
+            newCount: 1
+          })
+        } else {
+          projectItems[labelList.indexOf(tag.name)].newCount++
+        }
+
+        // store.dispatch({
+        //   type: A.UPDATE_TAG,
+        //   updateData: {
+        //     color: projectItems[labelList.indexOf(tag.name)].color
+        //   },
+        //   index
+        // })
+      })
+      return projectItems
+    }
+  }
+
   toMailList(type){
     this.props.router.replace(`mailbox/${type}`);
     this.setState({
@@ -99,29 +136,35 @@ class MailListView extends React.Component {
   toProjects(e,type,subType){
     e.stopPropagation();
     //this.props.router.push(`mailbox/project`);
-      console.log(type,subType)
-      // this.setState({
-      //   viewType:type,
-      //   viewFilter:{
-      //     type:'',
-      //     subType:''
-      //   }
-      // })
+    console.log(type,subType)
+    // this.setState({
+    //   viewType:type,
+    //   viewFilter:{
+    //     type:'',
+    //     subType:''
+    //   }
+    // })
   }
 
   render() {
-    let messages = this.state.messageAndThreadIds.splice(1, 1)
-    messages.length > 0 ? (
-      messages.map((value) => {
-        this.getMessage(userId, value.id, 'raw', (result) => {
-          // console.log(result) // log whole result object
-          // console.log(this.decodeUrlSafeBase64(result.raw)) // log whole message <HTML> data
-          // console.log(utf8.decode(this.decodeUrlSafeBase64(result.raw))) // log whole email data with utf8 encoding
-        })
-      })
-    ) : null
+    // let messages = this.state.messageAndThreadIds.splice(1, 1)
+    // messages.length > 0 ? (
+    //   messages.map((value) => {
+    //     this.getMessage(userId, value.id, 'raw', (result) => {
+    //       console.log(result) // log whole result object
+    //       console.log(this.decodeUrlSafeBase64(result.raw)) // log whole message <HTML> data
+    //       console.log(utf8.decode(this.decodeUrlSafeBase64(result.raw))) // log whole email data with utf8 encoding
+    //     })
+    //   })
+    // ) : null
 
-      // <button onClick={this.props.listThreads} >try api here</button>
+    // const threads = this.props.threads
+    // const tags = this.props.tags
+    mockBuddles[0].items = this.updateBuddles()
+    // console.log(this.updateBuddles())
+    // console.log('this.props.threads: ', this.props.threads)
+    // console.log('this.props.tags: ', this.props.tags)
+
     return (
       <div className="main-layout">
         <header className="header" style={styles.container} >
@@ -156,7 +199,7 @@ class MailListView extends React.Component {
         <div className="main-content">
           <aside className="left-menu">
             <div className="compose-btn-container">
-              <Button  onClick={e=>{ console.log('Compose') }}><Icon type="edit" />Compose</Button>
+              <Button  onClick={e =>{ console.log('Compose', e) }}><Icon type="edit" />Compose</Button>
             </div>
             <div className="inbox-group">
               <div className={`inbox-item inbox ${ this.state.viewFilter === 'inbox'?'active':'' }`}  onClick={ ()=>{this.toMailList('general')}}>
@@ -187,13 +230,15 @@ class MailListView extends React.Component {
                 {mockBuddles.map(item=>{
                   let {iconType,title,key} = item;
                   return (
-                    <Panel header={<PanelHeader {...{iconType,title}} toProjects={this.toProjects}/>}  key={key}>
-                      {item.items.map(subItem=>{
-                        subItem.newCount = subItem.newCount||''
-                        return (
-                          <PanelItem {...subItem} parentTitle={title} toProjects={this.toProjects}/>
-                        )
-                      })}
+                    <Panel header={<PanelHeader {...{iconType,title}} />} key={key}>
+                      {
+                        item.items ? item.items.map(subItem=>{
+                          subItem.newCount = subItem.newCount||''
+                          return (
+                            <PanelItem {...subItem}/>
+                          )
+                        }) : null
+                      }
                     </Panel>
                   )
                 })}
@@ -212,7 +257,8 @@ class MailListView extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    threads: state.threads
+    threads: state.threads,
+    tags: state.tags
   }
 }
 
@@ -238,29 +284,30 @@ const styles = {
   searchBar: {
   },
   navMenu:{
-    minWidth: '20vw',
+    minWidth: '20vw'
   }
 }
 
-const mockBuddles = [
+let mockBuddles = [
   {
     title:'Projects',
     iconType:'folder',
-    key:1,
-    items:[
-      {
-        key:1,
-        color:'rgb(254, 153, 15)',
-        title:'Larson',
-        newCount:1
-      },{
-        key:2,
-        color:'red',
-        title:'MWC',
-        newCount:9
-      }
-    ]
-  },{
+    key: 1
+    // items:[
+    //   {
+    //     key:1,
+    //     color:'rgb(254, 153, 15)',
+    //     title:'Larson',
+    //     newCount:1
+    //   },{
+    //     key:2,
+    //     color:'red',
+    //     title:'MWC',
+    //     newCount:9
+    //   }
+    // ]
+  },
+  {
     title:'Trips',
     iconType:'rocket',
     key:2,
@@ -272,7 +319,8 @@ const mockBuddles = [
         newCount:0
       }
     ]
-  },{
+  },
+  {
     title:'Others',
     iconType:'appstore-o',
     key:3,
@@ -285,7 +333,16 @@ const mockBuddles = [
       }
     ]
   }
+]
 
+const colorList = [
+  'rgb(254, 153, 15)',
+  'red',
+  'yellow',
+  'purple',
+  'pink',
+  'blue',
+  'green'
 ]
 
 export default connect(mapStateToProps, mapDispatchToProps)(MailListView)
