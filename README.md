@@ -11,6 +11,7 @@ git clone https://github.com/cnxuben/yeo-gmail-sample.git
 npm install
 npm start
 ```
+then run https://localhost:8000  in your browser
 
 ### used tech
 * node
