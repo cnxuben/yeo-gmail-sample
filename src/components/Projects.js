@@ -37,10 +37,9 @@ export default class ProjectsView extends React.Component{
     const {type, subType} = this.state;
 
     return (
-      <div style={{height:'100%',overflowY:'scroll'}} >
-        <h3>Title</h3>
-        <div className="project-container" style={{background:'red'}}>
-          sss
+      <div style={{height:'100%',overflowY:'scroll',background:'#F2F5F4'}} >
+        <div className="project-container" style={{background:'yellow',margin:'70px 100px'}}>
+          ss
         </div>
       </div>
     )
