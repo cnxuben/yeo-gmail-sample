@@ -126,7 +126,7 @@ class MailListView extends React.Component {
   }
 
   toMailList(type){
-    this.props.router.replace(`mailbox/${type}`);
+    this.props.router.replace(`mailbox/project`);
     this.setState({
       viewType:'general',
       viewFilter:'inbox'
@@ -180,7 +180,7 @@ class MailListView extends React.Component {
             />
           </div>
           <div className="nav-menu-group" style={styles.navMenu}>
-            <div className="hangout"><Icon type="aliwangwang" /></div>
+            <div className="hangout"><Icon type="aliwangwang" style={{transform:'rotateZ(180deg)'} }/></div>
             <div className="user-group">
               <div className="head-portrait">
                 <span href="#" style={{background:'url('+ require('../images/sample-portrait.jpg')+')',backgroundSize:'cover'}}> </span>
