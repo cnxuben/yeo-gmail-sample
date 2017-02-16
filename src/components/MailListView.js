@@ -15,7 +15,7 @@ const Search = Input.Search,
 const PanelHeader = (props)=>(
   <div className="panel-header">
     <Icon type={props.iconType} />
-    <span className="panel-header-title">{props.title||'Some Type'}</span>
+    <span className="panel-header-title" >{props.title||'Some Type'}</span>
     <Icon type="plus-circle-o" />
   </div>
 )
@@ -23,7 +23,9 @@ const PanelHeader = (props)=>(
 const PanelItem = (props)=>(
   <div className="panel-item">
     <span style={{background:props.color,height:7,width:7,borderRadius:'50%'}}> </span>
-    <span style={{flexGrow:1,paddingLeft:10,cursor:'pointer'}}>{props.title}</span>
+    <span style={{flexGrow:1,paddingLeft:10,cursor:'pointer'}} >
+      {props.title}
+      </span>
     <span>{props.newCount}</span>
   </div>
 )
@@ -32,7 +34,9 @@ class MailListView extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      messageAndThreadIds: []
+      messageAndThreadIds: [],
+      viewType:'',
+      viewFilter:''
     }
   }
 
@@ -121,6 +125,27 @@ class MailListView extends React.Component {
     }
   }
 
+  toMailList(type){
+    this.props.router.replace(`mailbox/project`);
+    this.setState({
+      viewType:'general',
+      viewFilter:'inbox'
+    })
+  }
+
+  toProjects(e,type,subType){
+    e.stopPropagation();
+    //this.props.router.push(`mailbox/project`);
+    console.log(type,subType)
+    // this.setState({
+    //   viewType:type,
+    //   viewFilter:{
+    //     type:'',
+    //     subType:''
+    //   }
+    // })
+  }
+
   render() {
     // let messages = this.state.messageAndThreadIds.splice(1, 1)
     // messages.length > 0 ? (
@@ -144,7 +169,7 @@ class MailListView extends React.Component {
       <div className="main-layout">
         <header className="header" style={styles.container} >
           <div className="icon-group" style={styles.iconGroup}>
-            <span style={{fontSize:18,color:'#7d7d7d'}}><span style={{fontSize:20,color:'#FFA318'}}>B</span>usiness Mail</span>
+            <span style={{fontSize:18,color:'#7d7d7d'}}><span style={{fontSize:20,color:'#1CD67C'}}>B</span>usiness Mail</span>
           </div>
           <div className="search-group" style={styles.searchGroup}>
             <Search
@@ -155,7 +180,7 @@ class MailListView extends React.Component {
             />
           </div>
           <div className="nav-menu-group" style={styles.navMenu}>
-            <div className="hangout"><Icon type="aliwangwang" /></div>
+            <div className="hangout"><Icon type="aliwangwang" style={{transform:'rotateZ(180deg)'} }/></div>
             <div className="user-group">
               <div className="head-portrait">
                 <span href="#" style={{background:'url('+ require('../images/sample-portrait.jpg')+')',backgroundSize:'cover'}}> </span>
@@ -177,7 +202,7 @@ class MailListView extends React.Component {
               <Button  onClick={e =>{ console.log('Compose', e) }}><Icon type="edit" />Compose</Button>
             </div>
             <div className="inbox-group">
-              <div className="inbox-item inbox">
+              <div className={`inbox-item inbox ${ this.state.viewFilter === 'inbox'?'active':'' }`}  onClick={ ()=>{this.toMailList('general')}}>
                 <Icon type="mail" />
                 <span className="inbox-title">Inbox</span>
                 <span className="new-mail-count">2</span>

@@ -104,7 +104,7 @@ body {
 }
 
 .search-group .ant-input{
-  font-family: "helvetia neue";
+  font-family: "sans-serif";
   font-size:1rem;
   line-height: 16px;
   letter-spacing: 1px;
@@ -130,13 +130,14 @@ body {
 /******************* Left aside *******************/
 .left-menu{
   height: 100%;
-  width: 200px;
+  width: 300px;
   background: #FAFAFA;
   position: relative;
   box-shadow: 8px 0px 10px 0px #eee;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
+  flex-shrink: 0;
 }
 
 .left-menu hr{
@@ -151,18 +152,19 @@ body {
 .compose-btn-container>button.ant-btn{
    width:100%;
    height:35px;
-   background-color: #FFA318;
+   background-color: #1CD67C;
    color: white;
-   box-shadow: 0px 5px 12px -5px #FFA318;
+   box-shadow: 0px 5px 12px -5px #1CD67C;
+    border-color: transparent;
 }
 .compose-btn-container>button.ant-btn:hover{
-  background: #ff9900;
-  border-color: #ff9900;
-  box-shadow: 0px 8px 10px -6px #FFA318;
+  background: #03c769;
+  border-color: #03c769;
+  box-shadow: 0px 8px 10px -6px #1CD67C;
 }
 
 .compose-btn-container>button.ant-btn-clicked:after{
-  border:0 solid #ff9900;
+  border:0 solid #03c769;
 }
 
 .inbox-group{
@@ -337,7 +339,7 @@ body {
   overflow: hidden;
 }
 .mail-list .mail-list-item .brief{
-  flex-grow: 1;
+  flex-basis: 70%;
   padding: 0 20px;
   overflow: hidden;
 }
@@ -349,4 +351,104 @@ body {
   border-radius: 15px;
   display: inline-block;
   /*box-shadow: 0px 2px 5px #555;*/
+}
+
+
+/**************** Project View ********************/
+.project-container .project-group{
+  margin-bottom: 40px;
+}
+
+.project-container .project-group h3{
+  font-size:20px;
+  color: #4A4A4A;
+  line-height: 24px;
+  /*font-family: sans-serif;*/
+  font-weight: 300;
+}
+
+.project-container .project-item{
+  height:200px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: inset 0 -1px 0 0 rgba(0,0,0,0.07), 0 2px 4px 0 #D8D8D8;
+  margin: 10px 0;
+  display: flex;
+  flex-flow:row nowrap;
+  justify-content: flex-start;
+}
+
+.project-container .project-item .bg{
+  flex-basis:170px;
+  background-size: cover;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  flex-shrink: 0;
+}
+.project-container .project-item .project-content{
+  padding:12px 30px;
+  display: flex;
+  flex-flow:column nowrap;
+  justify-content: flex-start;
+  flex-grow: 1;
+}
+
+.project-content .project-upper,
+.project-content .project-under{
+  flex-grow: 1;
+  flex-basis:0;
+}
+
+.project-content .proj-header{
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+  margin-bottom: 5px;
+}
+
+.project-content .proj-header .anticon {
+  line-height: 15px;
+  transform: rotateZ(90deg);
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.proj-header .right-group{
+  display: flex;
+  justify-content: space-between;
+}
+
+.project-container .project-item .project-content .title{
+  color: #1CD67C;
+  font-weight: bold;
+}
+
+.project-item .proj-descrip{
+  font-size: 11px;
+  line-height: 18px;
+  color: #777E79;
+  letter-spacing: 0;
+}
+
+.project-under .heads{
+  display: flex;
+  flex-flow:row nowrap;
+  justify-content: flex-start;
+  height: 50%;
+  border-bottom: 1px solid #F2F2F2;
+}
+.project-under .heads .head{
+  width:30px;
+  height:30px;
+  background-size: cover;
+  border-radius:50%;
+  margin-right: 8px;
+}
+.project-under .updates{
+  font-size: 14px;
+  line-height: 16px;
+  color: #777E79;
+  line-height: 50px;
 }

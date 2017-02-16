@@ -51,7 +51,7 @@ class MailListItem extends React.Component{
           <div className="mail-left-group">
             <Checkbox onChange={this.checkAllToggle}></Checkbox>
             <div className="marked-check" onClick={this.likeToggle}>
-              <Icon type="star-o"  style={{color: (state.like? '#ff9a00': 'inherit') }}/>
+              <Icon type={state.like? "star":"star-o"}  style={{color: (state.like? '#ff9a00': 'inherit') }}/>
             </div>
             <div className="portrait">
               <span href="#" style={{background:'url('+ require('../images/sample-portrait.jpg')+')',backgroundSize:'cover'}}> </span>
@@ -144,7 +144,7 @@ class GeneralView extends React.Component {
           <div className="menu-left-group">
             <Checkbox onChange={()=>{console.log('check')}}></Checkbox>
             <div className="marked-check" onClick={this.likeAllToggle} >
-              <Icon type="star-o"  style={{color: (state.likeAll? '#ff9a00': 'inherit') }}/>
+              <Icon type={state.likeAll? "star":"star-o"}  style={{color: (state.likeAll? '#ff9a00': 'inherit') }}/>
             </div>
             <div className="remove-checked">
               <Icon type="delete" />
@@ -153,7 +153,7 @@ class GeneralView extends React.Component {
           <div className="menu-right-group">
             {/*<div className="pagination">Page 1</div>*/}
             <div className="mail-calendar">
-              <Icon type="calendar" />
+              <Icon type="calendar" style={{color:'#1CD67C'}}/>
             </div>
           </div>
 
