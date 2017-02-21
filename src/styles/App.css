@@ -452,3 +452,40 @@ body {
   color: #777E79;
   line-height: 50px;
 }
+
+/***************** Modal *******************/
+.ant-modal.override-modal{
+  min-width:700px;
+}
+
+.override-modal .ant-modal-content{
+  border-radius: 8px;
+}
+
+.override-modal .ant-modal-header{
+  padding: 30px;
+  border-bottom:none;
+  border-radius: 8px 8px 0 0;
+}
+.override-modal .ant-modal-title{
+  font-size: 20px;
+  font-weight: initial;
+}
+
+.override-modal .ant-modal-footer{
+  border-top:none;
+}
+
+.override-modal .ant-modal-body img{
+  margin: 0 auto;
+  display: block;
+}
+
+.override-modal .ant-modal-footer .ant-btn{
+  border:none;
+}
+
+.override-modal .ant-modal-footer .ant-btn.ant-btn-primary{
+  background: transparent;
+  color: #1CD67C;
+}

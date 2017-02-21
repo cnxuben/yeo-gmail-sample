@@ -1,7 +1,7 @@
 import React from 'react';
 import actions from '../actions'
 import { connect } from 'react-redux'
-import { Input, Icon, Button, Collapse } from 'antd'
+import { Input, Icon, Button, Collapse, Modal, Form, Row, Col,DatePicker } from 'antd'
 import store from '../store'
 import A from '../const/actionTypes'
 // import utf8 from 'utf8'
@@ -9,7 +9,9 @@ import A from '../const/actionTypes'
 // const userId = 'me'
 
 const Search = Input.Search,
-  Panel = Collapse.Panel;
+  Panel = Collapse.Panel,
+  FormItem = Form.Item,
+  RangePicker = DatePicker.RangePicker;
 
 
 const PanelHeader = (props)=>(
@@ -36,7 +38,9 @@ class MailListView extends React.Component {
     this.state = {
       messageAndThreadIds: [],
       viewType:'',
-      viewFilter:''
+      viewFilter:'',
+      newProjectModalVisible: false,
+      newBuddleModalVisible:false
     }
   }
 
@@ -146,6 +150,34 @@ class MailListView extends React.Component {
     // })
   }
 
+  showModal(type){
+    //only used to test modal easily
+    switch(type){
+      case 'newProject':{
+        this.setState({ newProjectModalVisible: true })
+        break;
+      }
+      case 'newBuddle':{
+        this.setState({ newBuddleModalVisible: true })
+        break;
+      }
+    }
+  }
+
+  closeModal(type){
+    //only used to test modal easily
+    switch(type){
+      case 'newProject':{
+        this.setState({ newProjectModalVisible: false })
+        break;
+      }
+      case 'newBuddle':{
+        this.setState({ newBuddleModalVisible: false })
+        break;
+      }
+    }
+  }
+
   render() {
     // let messages = this.state.messageAndThreadIds.splice(1, 1)
     // messages.length > 0 ? (
@@ -207,12 +239,12 @@ class MailListView extends React.Component {
                 <span className="inbox-title">Inbox</span>
                 <span className="new-mail-count">2</span>
               </div>
-              <div className="inbox-item starred">
+              <div className="inbox-item starred" onClick={ ()=>{this.showModal('newProject')}}>
                 <Icon type="star-o" />
                 <span className="inbox-title">Starred</span>
                 <span className="new-mail-count"></span>
               </div>
-              <div className="inbox-item drafts">
+              <div className="inbox-item drafts" onClick={ ()=>{this.showModal('newBuddle')}}>
                 <Icon type="file-text" />
                 <span className="inbox-title">Drafts</span>
                 <span className="new-mail-count"></span>
@@ -250,6 +282,61 @@ class MailListView extends React.Component {
             {this.props.children|| <button onClick={this.props.listThreads} >try api here</button> }
           </section>
         </div>
+
+        <Modal title="Seems you are starting a new Project?"
+               visible={this.state.newProjectModalVisible}
+               onOk={()=>{this.closeModal('newProject')}}
+               onCancel={()=>{this.closeModal('newProject')}}
+               okText="YES,CREATE A NEW"
+               cancelText="NO,IT'S A JOKE"
+               maskClosable={true}
+               width="50%"
+               className="override-modal"
+        >
+
+          <img src={require('../images/2017-02-21_220838.png')} alt=""/>
+        </Modal>
+
+        <Modal title="Create new buddle"
+               visible={this.state.newBuddleModalVisible}
+               onOk={()=>{this.closeModal('newBuddle')}}
+               onCancel={()=>{this.closeModal('newBuddle')}}
+               okText="SAVE"
+               cancelText="CANCEL"
+               maskClosable={true}
+               width="50%"
+               className="override-modal"
+        >
+          <Form>
+            <Row gutter={40}>
+              <Col span={12}>
+                <FormItem label="">
+                    <Input placeholder="Buddle name"/>
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={40}>
+              <Col span={12}>
+                <FormItem label="Buddle type">
+                  <Input placeholder="Buddle name"/>
+                </FormItem>
+              </Col>
+              <Col span={12}>
+                <FormItem label="Range time">
+                  <RangePicker />
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={40}>
+              <Col span={24}>
+                <FormItem label="">
+                  <Input placeholder="Description"/>
+                </FormItem>
+              </Col>
+            </Row>
+          </Form>
+        </Modal>
+
       </div>
     );
   }
