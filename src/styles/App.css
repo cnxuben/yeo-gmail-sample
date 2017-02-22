@@ -463,7 +463,7 @@ body {
 }
 
 .override-modal .ant-modal-header{
-  padding: 30px;
+  padding: 30px 15px;
   border-bottom:none;
   border-radius: 8px 8px 0 0;
 }
@@ -487,5 +487,9 @@ body {
 
 .override-modal .ant-modal-footer .ant-btn.ant-btn-primary{
   background: transparent;
+  color: #1CD67C;
+}
+
+.override-modal .ant-form-item-label label{
   color: #1CD67C;
 }

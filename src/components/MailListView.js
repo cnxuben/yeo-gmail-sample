@@ -2,6 +2,8 @@ import React from 'react';
 import actions from '../actions'
 import { connect } from 'react-redux'
 import { Input, Icon, Button, Collapse, Modal, Form, Row, Col,DatePicker } from 'antd'
+import {BuddleModal} from './Modal'
+import enUS from 'antd/lib/date-picker/locale/en_US';
 import store from '../store'
 import A from '../const/actionTypes'
 // import utf8 from 'utf8'
@@ -297,45 +299,18 @@ class MailListView extends React.Component {
           <img src={require('../images/2017-02-21_220838.png')} alt=""/>
         </Modal>
 
-        <Modal title="Create new buddle"
-               visible={this.state.newBuddleModalVisible}
-               onOk={()=>{this.closeModal('newBuddle')}}
-               onCancel={()=>{this.closeModal('newBuddle')}}
-               okText="SAVE"
-               cancelText="CANCEL"
-               maskClosable={true}
-               width="50%"
-               className="override-modal"
-        >
-          <Form>
-            <Row gutter={40}>
-              <Col span={12}>
-                <FormItem label="">
-                    <Input placeholder="Buddle name"/>
-                </FormItem>
-              </Col>
-            </Row>
-            <Row gutter={40}>
-              <Col span={12}>
-                <FormItem label="Buddle type">
-                  <Input placeholder="Buddle name"/>
-                </FormItem>
-              </Col>
-              <Col span={12}>
-                <FormItem label="Range time">
-                  <RangePicker />
-                </FormItem>
-              </Col>
-            </Row>
-            <Row gutter={40}>
-              <Col span={24}>
-                <FormItem label="">
-                  <Input placeholder="Description"/>
-                </FormItem>
-              </Col>
-            </Row>
-          </Form>
-        </Modal>
+        <BuddleModal title="Create new buddle"
+                     visible={this.state.newBuddleModalVisible}
+                     close={()=>{this.closeModal('newBuddle')}}
+                     onCancel={()=>{this.closeModal('newBuddle')}}
+                     okText="SAVE"
+                     cancelText="CANCEL"
+                     maskClosable={true}
+                     width="50%"
+                     className="override-modal"
+        />
+
+
 
       </div>
     );
@@ -372,7 +347,7 @@ const styles = {
   },
   navMenu:{
     minWidth: '20vw'
-  }
+  },
 }
 
 let mockBuddles = [
