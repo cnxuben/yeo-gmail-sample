@@ -9,11 +9,11 @@ const FormItem = Form.Item,
 
 
 const people = [
-  { name: 'Tom', type: 'tom.w@pwc.com' },
-  { name: 'Sam', type: 'sam.w@pwc.com' },
-  { name: 'Jack', type: 'jack.w@pwc.com'},
-  { name: 'Mary', type: 'mary.w@pwc.com' },
-  { name: 'Django', type: 'django.w@pwc.com' },
+  { name: 'Tom', type: 'tom.w@pwc.com', icon:'../images/Screen Shot 2017-02-08 at 3.47.59 PM.png' },
+  { name: 'Sam', type: 'sam.w@pwc.com', icon:'../images/Screen Shot 2017-02-08 at 3.48.03 PM.png'  },
+  { name: 'Jack', type: 'jack.w@pwc.com', icon:'../images/Screen Shot 2017-02-08 at 3.48.08 PM.png' },
+  { name: 'Mary', type: 'mary.w@pwc.com' , icon:'../images/Screen Shot 2017-02-08 at 3.48.19 PM.png' },
+  { name: 'Django', type: 'django.w@pwc.com' , icon:'../images/Screen Shot 2017-02-08 at 3.48.23 PM.png' },
 ];
 
 function onSelect(suggestion, data) {
@@ -41,6 +41,7 @@ class BuddleModalForm extends React.Component{
     );
     const suggestions = filtered.map(suggestion =>
       <Nav value={suggestion.name} data={suggestion}>
+        <img alt={suggestion.name} style={{ height: 16, width: 16, marginRight: 5, float: 'left' }} src={suggestion.icon} />
         <span>{suggestion.name} - {suggestion.type}</span>
       </Nav>);
     this.setState({ suggestions });
@@ -122,4 +123,58 @@ class BuddleModal extends React.Component{
   }
 }
 
-export {BuddleModal}
+
+
+class NewProjModal extends React.Component{
+  render(){
+    return(
+      <Modal {...this.props}>
+        <img src={require('../images/2017-02-21_220838.png')} alt=""/>
+      </Modal>
+    )
+  }
+}
+
+class ProjDetail1 extends React.Component{
+  render(){
+    return(
+      <Modal {...this.props} className="override-modal proj-detail-modal1">
+        <img onClick={this.props.onOk} src={require('../images/project-detail-modal1.png')} alt="" style={{width:'100%'}}/>
+      </Modal>
+    )
+  }
+}
+
+class ProjDetail2 extends React.Component{
+  render(){
+    return(
+      <Modal {...this.props} className="override-modal proj-detail-modal2">
+        <img onClick={this.props.onOk} src={require('../images/project-detail-modal2.png')} alt="" style={{width:'100%'}}/>
+      </Modal>
+    )
+  }
+}
+
+class ProjDetail3 extends React.Component{
+  render(){
+    return(
+      <Modal {...this.props} className="override-modal proj-detail-modal3">
+        <img onClick={this.props.onOk} src={require('../images/project-detail-modal3.png')} alt="" style={{width:'100%'}}/>
+      </Modal>
+    )
+  }
+}
+
+
+class TripDetail1 extends React.Component{
+  render(){
+    return(
+      <Modal {...this.props} className="override-modal trip-detail-modal1">
+        <img onClick={this.props.onOk} src={require('../images/trip-detail-modal1.png')} alt="" style={{width:'100%'}}/>
+      </Modal>
+    )
+  }
+}
+
+
+export {BuddleModal,NewProjModal,ProjDetail1,ProjDetail2,ProjDetail3,TripDetail1}

@@ -2,7 +2,7 @@ import React from 'react';
 import actions from '../actions'
 import { connect } from 'react-redux'
 import { Input, Icon, Button, Collapse, Modal, Form, Row, Col,DatePicker } from 'antd'
-import {BuddleModal} from './Modal'
+import {BuddleModal,NewProjModal} from './Modal'
 import enUS from 'antd/lib/date-picker/locale/en_US';
 import store from '../store'
 import A from '../const/actionTypes'
@@ -132,7 +132,7 @@ class MailListView extends React.Component {
   }
 
   toMailList(type){
-    this.props.router.replace(`mailbox/project`);
+    this.props.router.replace(`mailbox`);
     this.setState({
       viewType:'general',
       viewFilter:'inbox'
@@ -285,19 +285,16 @@ class MailListView extends React.Component {
           </section>
         </div>
 
-        <Modal title="Seems you are starting a new Project?"
-               visible={this.state.newProjectModalVisible}
-               onOk={()=>{this.closeModal('newProject')}}
-               onCancel={()=>{this.closeModal('newProject')}}
-               okText="YES,CREATE A NEW"
-               cancelText="NO,IT'S A JOKE"
-               maskClosable={true}
-               width="50%"
-               className="override-modal"
-        >
 
-          <img src={require('../images/2017-02-21_220838.png')} alt=""/>
-        </Modal>
+        <NewProjModal title="Seems you are starting a new Project?"
+                      visible={this.state.newProjectModalVisible}
+                      onOk={()=>{this.closeModal('newProject')}}
+                      onCancel={()=>{this.closeModal('newProject')}}
+                      okText="YES,CREATE A NEW"
+                      cancelText="NO,IT'S A JOKE"
+                      maskClosable={true}
+                      width="50%"
+                      className="override-modal"/>
 
         <BuddleModal title="Create new buddle"
                      visible={this.state.newBuddleModalVisible}

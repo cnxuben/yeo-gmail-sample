@@ -1,12 +1,21 @@
 import React from 'react';
 import { Checkbox, Icon  } from 'antd';
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
 const mockMailList = [
   {
     key:1,
     title: 'Most Recent',
-    // items: []
+    items: [
+      {
+        key:0,
+        from: 'Gene Aguilar',
+        brief: 'Kick off of Business Mail App',
+        tag:null,
+        date: 'Feb, 3',
+      }
+    ]
   },{
     key:2,
     title: 'January',
@@ -16,21 +25,30 @@ const mockMailList = [
         from: 'Some Person',
         brief: 'Trip to India',
         tag:'red',
-        date: 'Aug, 1'
+        date: 'Jan, 1'
       },{
         key:2,
         from: 'Some Person',
         brief: 'Trip to India',
         tag:'red',
-        date: 'Aug, 2'
+        date: 'Jan, 2'
       }
     ]
   }
 ]
 
+const mockHeadshot = [
+  '../images/Screen Shot 2017-02-08 at 3.47.59 PM.png',
+  '../images/Screen Shot 2017-02-08 at 3.48.03 PM.png',
+  '../images/Screen Shot 2017-02-08 at 3.48.08 PM.png',
+  '../images/Screen Shot 2017-02-08 at 3.48.19 PM.png',
+  '../images/Screen Shot 2017-02-08 at 3.48.23 PM.png',
+  '../images/sample-portrait.jpg',
+]
+
 class MailListItem extends React.Component{
-  constructor(){
-    super();
+  constructor(props,context){
+    super(props,context);
     this.state = {
       like:false
     }
@@ -40,12 +58,17 @@ class MailListItem extends React.Component{
 
   }
 
-  likeToggle = ()=>{
+  likeToggle(){
     this.setState({like:!this.state.like})
+  }
+
+  showModal(){
+
   }
 
   render(){
     const state = this.state;
+    let img = mockHeadshot[~~(Math.random()*6)];
     return(
       <div className="mail-list-item">
           <div className="mail-left-group">
@@ -54,14 +77,16 @@ class MailListItem extends React.Component{
               <Icon type={state.like? "star":"star-o"}  style={{color: (state.like? '#ff9a00': 'inherit') }}/>
             </div>
             <div className="portrait">
-              <span href="#" style={{background:'url('+ require('../images/sample-portrait.jpg')+')',backgroundSize:'cover'}}> </span>
+              <span href="#" style={{background:'url('+ require('../images/sample-portrait.jpg')+')', backgroundSize:'cover'}}> </span>
             </div>
           </div>
 
           <div className="fromName">{this.props.from}</div>
           <div className="brief">{this.props.brief}</div>
           <div className="mail-right-group">
-            <span style={{background:this.props.tag,height:7,width:7,borderRadius:'50%'}}> </span>
+            { this.props.tag ? <span style={{background:this.props.tag,height:7,width:7,borderRadius:'50%'}}> </span> :
+              <span className="unset-icon" onClick={this.showModal}>?</span>
+            }
             <span style={{paddingLeft:10}}>{this.props.date}</span>
           </div>
       </div>
@@ -136,7 +161,7 @@ class GeneralView extends React.Component {
 
   render() {
     const state = this.state;
-    mockMailList[0].items = this.getMailList()
+    //mockMailList[0].items = [...mockMailList[0].items, ...this.getMailList()||null]
     // mockMailList[1].items =
     return (
       <div style={{height:'100%',overflowY:'scroll'}}>

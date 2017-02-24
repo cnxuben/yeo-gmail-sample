@@ -353,6 +353,14 @@ body {
   /*box-shadow: 0px 2px 5px #555;*/
 }
 
+.unset-icon{
+  width: 20px;
+  line-height: 20px;
+  background: #1CD67C;
+  text-align: center;
+  border-radius: 50%;
+  color:white;
+}
 
 /**************** Project View ********************/
 .project-container .project-group{
@@ -492,4 +500,42 @@ body {
 
 .override-modal .ant-form-item-label label{
   color: #1CD67C;
+}
+
+
+/******************** hot spots *****************/
+.hot-spot{
+  background: red;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  cursor: pointer;
+}
+.hot-spot.proj-detail-modal-1{
+  background: transparent;
+  width: 750px;
+  height: 200px;
+  top: 331px;
+}
+
+.hot-spot.trip-main{
+  background: transparent;
+  width: 856px;
+  height: 200px;
+  top: 150px;
+}
+
+.hot-spot.trip-detail-modal {
+  background: transparent;
+  width: 756px;
+  height: 700px;
+  top: 200px;
+}
+
+/************* mock modals *****************/
+.proj-detail-modal1 .ant-modal-footer,
+.proj-detail-modal2 .ant-modal-footer,
+.proj-detail-modal3 .ant-modal-footer,
+.trip-detail-modal1 .ant-modal-footer{
+  display: none;
 }

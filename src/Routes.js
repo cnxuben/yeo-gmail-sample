@@ -7,6 +7,10 @@ import MailListView from './components/MailListView'
 import GeneralView from './components/General'
 import ProjectsView from './components/Projects'
 import Container from './components/Container.js'
+import ProjectDetail from './components/ProjectDetail'
+import TripsView from './components/Trips'
+import TripDetail from './components/TripDetail'
+
 
 require('normalize.css/normalize.css');
 require('antd/dist/antd.css')
@@ -28,6 +32,9 @@ const Routes = (
       <Route path="/mailbox" component={MailListView}>
         <IndexRoute component={GeneralView}/>
         <Route path="project" component={ProjectsView} />
+        <Route path="projectDetail" component={ProjectDetail} />
+        <Route path="trip" component={TripsView}/>
+        <Route path="tripDetail" component={TripDetail} />
       </Route>
 {/*        <Route path="/enterAppointment/:params" component={EnterAppointmentView}
           params="s=siteId&j=jobId&a=appointmentId"/>
