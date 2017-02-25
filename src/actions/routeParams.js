@@ -22,7 +22,7 @@ export default {
     params
   ) => {
     return (dispatch) => {
-      let path = '/' + route
+      let path = '/' + (route ? route : 'mailbox')
       if (params) {
         path += '/' + encodeParams(params)
       }

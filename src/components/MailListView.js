@@ -15,7 +15,6 @@ const Search = Input.Search,
   FormItem = Form.Item,
   RangePicker = DatePicker.RangePicker;
 
-
 const PanelHeader = (props)=>(
   <div className="panel-header">
     <Icon type={props.iconType} />
@@ -24,8 +23,14 @@ const PanelHeader = (props)=>(
   </div>
 )
 
+function goToProject() {
+  store.dispatch(actions.routeTo('project'))
+}
+
 const PanelItem = (props)=>(
-  <div className="panel-item">
+  <div
+    className="panel-item"
+    onClick={goToProject}>
     <span style={{background:props.color,height:7,width:7,borderRadius:'50%'}}> </span>
     <span style={{flexGrow:1,paddingLeft:10,cursor:'pointer'}} >
       {props.title}

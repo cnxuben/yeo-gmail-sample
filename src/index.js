@@ -44,7 +44,8 @@ function initClient() {
 function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
     console.log('init already login')
-    store.dispatch(actions.routeTo('mailbox'))
+    const pathname = window.location.pathname.replace('\/', '')
+    store.dispatch(actions.routeTo(pathname))
   }
 }
 

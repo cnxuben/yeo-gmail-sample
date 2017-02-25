@@ -31,10 +31,10 @@ const Routes = (
       <Route path="/" component={App} />
       <Route path="/mailbox" component={MailListView}>
         <IndexRoute component={GeneralView}/>
-        <Route path="project" component={ProjectsView} />
-        <Route path="projectDetail" component={ProjectDetail} />
-        <Route path="trip" component={TripsView}/>
-        <Route path="tripDetail" component={TripDetail} />
+        <Route path="/project" component={ProjectsView} />
+        <Route path="/projectDetail" component={ProjectDetail} />
+        <Route path="/trip" component={TripsView}/>
+        <Route path="/tripDetail" component={TripDetail} />
       </Route>
 {/*        <Route path="/enterAppointment/:params" component={EnterAppointmentView}
           params="s=siteId&j=jobId&a=appointmentId"/>
