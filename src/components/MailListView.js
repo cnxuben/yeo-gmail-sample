@@ -30,11 +30,12 @@ function doIconAction(type) {
 }
 
 const PanelHeader = (props)=>(
-  <div className="panel-header">
+  <div
+    onClick={() => {doIconAction(props.title)}}
+    className="panel-header">
     <Icon type={props.iconType} />
     <span className="panel-header-title" >{props.title||'Some Type'}</span>
     <Icon
-      onClick={() => {doIconAction(props.title)}}
       type="plus-circle-o" />
   </div>
 )
