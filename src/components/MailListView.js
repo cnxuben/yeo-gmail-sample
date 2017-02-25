@@ -15,11 +15,27 @@ const Search = Input.Search,
   FormItem = Form.Item,
   RangePicker = DatePicker.RangePicker;
 
+
+function doIconAction(type) {
+  switch(type) {
+    case 'Projects':
+      store.dispatch({
+        type: A.OPEN_BUNDLE_DIALOG
+      })
+      break
+    case 'Trips':
+      store.dispatch(actions.routeTo('trip'))
+      break
+  }
+}
+
 const PanelHeader = (props)=>(
   <div className="panel-header">
     <Icon type={props.iconType} />
     <span className="panel-header-title" >{props.title||'Some Type'}</span>
-    <Icon type="plus-circle-o" />
+    <Icon
+      onClick={() => {doIconAction(props.title)}}
+      type="plus-circle-o" />
   </div>
 )
 
