@@ -9,7 +9,7 @@ const mockMailList = [
     title: 'Most Recent',
     items: [
       {
-        key:0,
+        key: 0,
         from: 'Gene Aguilar',
         brief: 'Kick off of Business Mail App',
         tag:null,
@@ -116,7 +116,8 @@ class GeneralView extends React.Component {
   constructor(){
     super()
     this.state = {
-      likeAll: false
+      likeAll: false,
+      // mockMailList: originMockMailList
     }
   }
 
@@ -127,31 +128,28 @@ class GeneralView extends React.Component {
   getMailList() {
     const threads = this.props.threads
     const tags = this.props.tags
+    const projects = this.props.projects || []
+    const projectItems = this.props.projectItems || []
     if (threads) {
       let itemsToStore = []
       let labelList = []
-      Object.keys(threads).map((threadKey, index) => {
+      Object.keys(threads).forEach((threadKey, index) => {
         const thread = threads[threadKey]
         itemsToStore.push({
-          key: index + 1,
+          // key: index + 1,
           from: thread.members ? thread.members[0] : '',
           brief: thread.snippet ? thread.snippet : '',
           date: thread.formatUpdateTime ? thread.formatUpdateTime : '',
           subject: thread.subject ? thread.subject : '',
         })
 
-        const tagIndex = tags.findIndex((tag) => {
-          return tag.threadId === threadKey
-        })
-
-        if (tagIndex > 0) {
-          const flag = labelList.indexOf(tags[tagIndex].name)
-          console.log('flag hrere: ', flag)
-          if (flag < 0) {
-            labelList.push(tags[tagIndex].name)
+        if (thread.tag) {
+          itemsToStore[index].name = thread.tag.name
+          const projectIndex = projects.indexOf((thread.tag.name))
+          if (!(projectIndex < 0) && projectItems[projectIndex]) {
+            itemsToStore[index].color = projectItems[projectIndex].color
+            // console.log('itemsToStore: ', itemsToStore[index])
           }
-          itemsToStore[index].name = tags[tagIndex].name ? tags[tagIndex].name : null
-          itemsToStore[index].tag = colorList[flag]
         }
       })
 
@@ -159,10 +157,23 @@ class GeneralView extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    // mockMailList[0].items = [...mockMailList[0].items, ...this.getMailList() || null]
+    // mockMailList[0].items = mockMailList[0].items.concat(this.getMailList())
+    console.log('componentWillReceiveProps: ', mockMailList[0].items.length)
+    console.log('this.getMailList: ', this.getMailList().length)
+    // console.log('this.getMailList(): ', this.getMailList())
+    // this.setState({
+    //   mockMailList: this.getMailList()
+    //   mockMailLists: originMockMailList
+    // })
+  }
+
   render() {
     const state = this.state;
     //mockMailList[0].items = [...mockMailList[0].items, ...this.getMailList()||null]
     // mockMailList[1].items =
+
     return (
       <div style={{height:'100%',overflowY:'scroll'}}>
         <div className="mail-menu">
@@ -198,7 +209,9 @@ class GeneralView extends React.Component {
 const mapStateToProps = (state) => {
   return {
     threads: state.threads,
-    tags: state.tags
+    tags: state.tags,
+    projects: state.projects,
+    projectItems: state.projectItems
   }
 }
 

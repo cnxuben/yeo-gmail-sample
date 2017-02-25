@@ -123,7 +123,6 @@ export default {
             })
           } else {
             // update item newCount
-            console.log('projIndex is: ', projIndex)
             dispatch({
               type: A.INCRE_ITEM_COUNT,
               projIndex
