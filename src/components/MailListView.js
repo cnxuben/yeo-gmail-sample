@@ -54,6 +54,10 @@ class MailListView extends React.Component {
       //   })
       // })
       this.props.listThreads()
+      // mockBuddles[0].items = this.updateBuddles()
+      // console.log('mockBuddles.items: ', mockBuddles[0])
+      this.props.getProjectItems()
+
     }, 2000)
   }
 
@@ -194,10 +198,11 @@ class MailListView extends React.Component {
 
     // const threads = this.props.threads
     // const tags = this.props.tags
-    mockBuddles[0].items = this.updateBuddles()
-    // console.log(this.updateBuddles())
-    // console.log('this.props.threads: ', this.props.threads)
-    // console.log('this.props.tags: ', this.props.tags)
+
+    // mockBuddles[0].items = this.updateBuddles()
+    // console.log('mockBuddles.items: ', mockBuddles[0])
+
+    // console.log('this.props: ', this.props)
 
     return (
       <div className="main-layout">
@@ -317,13 +322,15 @@ class MailListView extends React.Component {
 const mapStateToProps = (state) => {
   return {
     threads: state.threads,
-    tags: state.tags
+    tags: state.tags,
+    projectItems: state.projectItems
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    listThreads: () => dispatch(actions.listThreads())
+    listThreads: () => dispatch(actions.listThreads()),
+    getProjectItems: () => dispatch(actions.getProjectItems())
   }
 }
 

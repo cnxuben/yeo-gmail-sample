@@ -202,6 +202,7 @@ body {
 
 .buddles-group{
   font-size: 13px;
+  overflow: auto;
 }
 
 .buddles-group>h5{
