@@ -11,7 +11,7 @@ export default (currentState, action) => {
           threadId: action.threadId
         }
       ])
-      console.log('RECEIVE_TAG reducers', updatedState)
+      // console.log('RECEIVE_TAG reducers', updatedState)
       break
     case A.UPDATE_TAG:
       updatedState[action.index] = Object.assign(

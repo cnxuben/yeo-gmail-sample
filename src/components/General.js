@@ -2,6 +2,8 @@ import React from 'react';
 import { Checkbox, Icon  } from 'antd';
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
+import store from '../store'
+import A from '../const/actionTypes'
 
 const mockMailList = [
   {
@@ -63,7 +65,9 @@ class MailListItem extends React.Component{
   }
 
   showModal(){
-
+    store.dispatch({
+      type: A.OPEN_PROJ_DIALOG
+    })
   }
 
   render(){
@@ -160,8 +164,8 @@ class GeneralView extends React.Component {
   componentWillReceiveProps(nextProps) {
     // mockMailList[0].items = [...mockMailList[0].items, ...this.getMailList() || null]
     // mockMailList[0].items = mockMailList[0].items.concat(this.getMailList())
-    console.log('componentWillReceiveProps: ', mockMailList[0].items.length)
-    console.log('this.getMailList: ', this.getMailList().length)
+    // console.log('componentWillReceiveProps: ', mockMailList[0].items.length)
+    // console.log('this.getMailList: ', this.getMailList().length)
     // console.log('this.getMailList(): ', this.getMailList())
     // this.setState({
     //   mockMailList: this.getMailList()
@@ -211,7 +215,8 @@ const mapStateToProps = (state) => {
     threads: state.threads,
     tags: state.tags,
     projects: state.projects,
-    projectItems: state.projectItems
+    projectItems: state.projectItems,
+    dialog: state.dialog
   }
 }
 

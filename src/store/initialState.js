@@ -1,4 +1,8 @@
 export default {
+  dialog: {
+    projOpen: false,
+    bundleOpen: false,
+  },
   projects: [],
   projectItems: [],
   threads: {},

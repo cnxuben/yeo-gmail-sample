@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { Input, Icon, Button, Collapse, Modal, Form, Row, Col,DatePicker } from 'antd'
 import {BuddleModal,NewProjModal} from './Modal'
 import enUS from 'antd/lib/date-picker/locale/en_US';
+import store from '../store'
+import A from '../const/actionTypes'
 // import utf8 from 'utf8'
 // const userId = 'singh.raghverndra@businessos.net'
 // const userId = 'me'
@@ -168,11 +170,20 @@ class MailListView extends React.Component {
     //only used to test modal easily
     switch(type){
       case 'newProject':{
-        this.setState({ newProjectModalVisible: false })
+        // this.setState({ newProjectModalVisible: false })
+        store.dispatch({
+          type: A.CLOSE_PROJ_DIALOG
+        })
+        store.dispatch({
+          type: A.OPEN_BUNDLE_DIALOG
+        })
         break;
       }
       case 'newBuddle':{
-        this.setState({ newBuddleModalVisible: false })
+        store.dispatch({
+          type: A.CLOSE_BUNDLE_DIALOG
+        })
+        // this.setState({ newBuddleModalVisible: false })
         break;
       }
     }
@@ -191,6 +202,7 @@ class MailListView extends React.Component {
     // ) : null
 
     mockBuddles[0].items = this.props.projectItems
+    const dialog = this.props.dialog
 
     // console.log('this.props: ', this.props)
 
@@ -282,7 +294,7 @@ class MailListView extends React.Component {
 
 
         <NewProjModal title="Seems you are starting a new Project?"
-                      visible={this.state.newProjectModalVisible}
+                      visible={dialog.projOpen}
                       onOk={()=>{this.closeModal('newProject')}}
                       onCancel={()=>{this.closeModal('newProject')}}
                       okText="YES,CREATE A NEW"
@@ -292,7 +304,7 @@ class MailListView extends React.Component {
                       className="override-modal"/>
 
         <BuddleModal title="Create new buddle"
-                     visible={this.state.newBuddleModalVisible}
+                     visible={dialog.bundleOpen}
                      close={()=>{this.closeModal('newBuddle')}}
                      onCancel={()=>{this.closeModal('newBuddle')}}
                      okText="SAVE"
@@ -313,7 +325,8 @@ const mapStateToProps = (state) => {
   return {
     threads: state.threads,
     tags: state.tags,
-    projectItems: state.projectItems
+    projectItems: state.projectItems,
+    dialog: state.dialog
   }
 }
 
