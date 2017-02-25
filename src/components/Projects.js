@@ -1,5 +1,7 @@
 import React from 'react';
 import { Icon  } from 'antd';
+import store from '../store'
+import actions from '../actions'
 
 
 const mockProjectList = [
@@ -38,9 +40,15 @@ const mockProjectList = [
 ]
 
 class ProjectItem extends React.Component{
-  render(){
+  goToProjectDetail() {
+    store.dispatch(actions.routeTo('projectDetail'))
+  }
+
+  render() {
     return (
-      <div className="project-item">
+      <div
+        className="project-item"
+        onClick={this.goToProjectDetail.bind(this)}>
         <span className="bg" style={{backgroundImage:'url('+ require('../images/sample-proj.jpg')+')'}}> </span>
         <div className="project-content">
           <div className="project-upper">
