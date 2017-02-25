@@ -1,4 +1,6 @@
 export default {
+  projects: [],
+  projectItems: [],
   threads: {},
   tags: []
   // messages: [],

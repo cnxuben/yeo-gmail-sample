@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import { Input, Icon, Button, Collapse, Modal, Form, Row, Col,DatePicker } from 'antd'
 import {BuddleModal,NewProjModal} from './Modal'
 import enUS from 'antd/lib/date-picker/locale/en_US';
-import store from '../store'
-import A from '../const/actionTypes'
 // import utf8 from 'utf8'
 // const userId = 'singh.raghverndra@businessos.net'
 // const userId = 'me'
@@ -54,10 +52,6 @@ class MailListView extends React.Component {
       //   })
       // })
       this.props.listThreads()
-      // mockBuddles[0].items = this.updateBuddles()
-      // console.log('mockBuddles.items: ', mockBuddles[0])
-      this.props.getProjectItems()
-
     }, 2000)
   }
 
@@ -146,7 +140,7 @@ class MailListView extends React.Component {
   toProjects(e,type,subType){
     e.stopPropagation();
     //this.props.router.push(`mailbox/project`);
-    console.log(type,subType)
+    console.log(type, subType)
     // this.setState({
     //   viewType:type,
     //   viewFilter:{
@@ -196,11 +190,7 @@ class MailListView extends React.Component {
     //   })
     // ) : null
 
-    // const threads = this.props.threads
-    // const tags = this.props.tags
-
-    // mockBuddles[0].items = this.updateBuddles()
-    // console.log('mockBuddles.items: ', mockBuddles[0])
+    mockBuddles[0].items = this.props.projectItems
 
     // console.log('this.props: ', this.props)
 
@@ -330,7 +320,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     listThreads: () => dispatch(actions.listThreads()),
-    getProjectItems: () => dispatch(actions.getProjectItems())
   }
 }
 

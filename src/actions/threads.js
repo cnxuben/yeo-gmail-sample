@@ -83,6 +83,8 @@ export default {
         }
 
         let thread = {}
+        let projects = getState().projects
+        let projectItems = getState().projectItems
 
         thread = threadUtil.extractThreadInfo(response.result)
 
@@ -99,6 +101,35 @@ export default {
             tag: thread.tag,
             threadId
           })
+
+          // update projectItems list and projects list
+          const name = thread.tag.name
+          const projIndex = projects.indexOf(name)
+          if (projIndex < 0) {
+            // create new project and item
+            dispatch({
+              type: A.RECEIVE_PROJECT,
+              name
+            })
+
+            dispatch({
+              type: A.RECEIVE_PROJECT_ITEM,
+              data: {
+                newCount: 1,
+                color: colorList[projects.length],
+                key: projects.length + 1,
+                title: name
+              }
+            })
+          } else {
+            // update item newCount
+            console.log('projIndex is: ', projIndex)
+            dispatch({
+              type: A.INCRE_ITEM_COUNT,
+              projIndex
+            })
+          }
+
         }
 
         // return Promise.resolve({[threadId]: thread})
@@ -107,3 +138,13 @@ export default {
     }
   }
 }
+
+const colorList = [
+  'rgb(254, 153, 15)',
+  'red',
+  'yellow',
+  'purple',
+  'pink',
+  'blue',
+  'green'
+]
