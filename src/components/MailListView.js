@@ -166,6 +166,12 @@ class MailListView extends React.Component {
     }
   }
 
+  closeAll() {
+    store.dispatch({
+      type: A.CLOSE_PROJ_DIALOG
+    })
+  }
+
   closeModal(type){
     //only used to test modal easily
     switch(type){
@@ -296,7 +302,7 @@ class MailListView extends React.Component {
         <NewProjModal title="Seems you are starting a new Project?"
                       visible={dialog.projOpen}
                       onOk={()=>{this.closeModal('newProject')}}
-                      onCancel={()=>{this.closeModal('newProject')}}
+                      onCancel={()=>{this.closeAll()}}
                       okText="YES,CREATE A NEW"
                       cancelText="NO,IT'S A JOKE"
                       maskClosable={true}
