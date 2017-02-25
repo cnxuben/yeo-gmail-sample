@@ -40,6 +40,7 @@ body {
 }
 .view-container{
   flex-grow: 1;
+  overflow: auto;
 }
 
 .header{
