@@ -24,8 +24,10 @@ export default class ProjectDetail extends React.Component{
   render(){
 
     return(
-      <div>
-        <img className="two-x-img"  src={require('../images/project-detail@2x.png')} alt=""/>
+      <div
+        style={{width: 940, height: 900}}>
+        {/*<img className="two-x-img"  src={require('../images/project-detail@2x.png')} alt=""/>*/}
+        <img style={{maxHeight: '100%', maxWidth: '100%'}} src={require('../images/project-detail@2x.png')} alt=""/>
         <div onClick={()=>{this.showModal(1)}} className="hot-spot proj-detail-modal-1"></div>
         <ProjDetail1 title=""
                      visible={this.state.modal1Visible}
