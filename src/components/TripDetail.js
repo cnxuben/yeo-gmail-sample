@@ -24,8 +24,10 @@ export default class TripDetail extends React.Component{
   render(){
 
     return(
-      <div>
-        <img className="two-x-img"  src={require('../images/trip-detail@2x.png')} alt=""/>
+      <div
+        style={{width: 940, height: 900}}>
+        {/*<img className="two-x-img"  src={require('../images/trip-detail@2x.png')} alt=""/>*/}
+        <img style={{maxHeight: '100%', maxWidth: '100%'}}  src={require('../images/trip-detail@2x.png')} alt=""/>
         <div onClick={()=>{this.goToGoogleDrive()}} className="hot-spot go-to-google-drive"></div>
         <div onClick={()=>{this.showModal(1)}} className="hot-spot trip-detail-modal"></div>
         <TripDetail1 title=""

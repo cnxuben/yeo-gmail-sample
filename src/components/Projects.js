@@ -11,7 +11,7 @@ const mockProjectList = [
     items: [
       {
         key:1,
-        img:require('../images/p1.png'),
+        img:require('../images/p3.png'),
         projectName: 'Retail',
         description: 'evolution of retail, information to right people at a right time',
         updates:0,
@@ -24,7 +24,7 @@ const mockProjectList = [
       },
       {
         key:2,
-        img:require('../images/p2.png'),
+        img:require('../images/p1.png'),
         projectName: 'FSO',
         description: 'Improve field service efficiency with optimized scheduling and location service.',
         updates:5,
@@ -43,7 +43,7 @@ const mockProjectList = [
     items: [
       {
         key:1,
-        img:require('../images/p3.png'),
+        img:require('../images/p2.png'),
         projectName: 'Mobility',
         description: 'make your journey as easy as possible',
         updates:1,
