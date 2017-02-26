@@ -231,7 +231,7 @@ class GeneralView extends React.Component {
     // mockMailList[1].items =
 
     return (
-      <div style={{height:'100%',overflowY:'scroll'}}>
+      <div style={{height:'100%'}}>
         <div className="mail-menu">
           <div className="menu-left-group">
             <Checkbox onChange={()=>{console.log('check')}}></Checkbox>

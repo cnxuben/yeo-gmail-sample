@@ -1,19 +1,23 @@
 import React from 'react';
 import { Modal, Form, Row, Col, Input, DatePicker, Mention  } from 'antd';
 import enUS from 'antd/lib/date-picker/locale/en_US';
+import moment from 'moment';
 
 const FormItem = Form.Item,
       RangePicker = DatePicker.RangePicker,
       Nav = Mention.Nav,
       { getMentions } = Mention;
 
+const dateFormat = 'YYYY-MM-DD';
+
 
 const people = [
-  { name: 'Tom', type: 'tom.w@pwc.com', icon:'../images/Screen Shot 2017-02-08 at 3.47.59 PM.png' },
-  { name: 'Sam', type: 'sam.w@pwc.com', icon:'../images/Screen Shot 2017-02-08 at 3.48.03 PM.png'  },
-  { name: 'Jack', type: 'jack.w@pwc.com', icon:'../images/Screen Shot 2017-02-08 at 3.48.08 PM.png' },
-  { name: 'Mary', type: 'mary.w@pwc.com' , icon:'../images/Screen Shot 2017-02-08 at 3.48.19 PM.png' },
-  { name: 'Django', type: 'django.w@pwc.com' , icon:'../images/Screen Shot 2017-02-08 at 3.48.23 PM.png' },
+  { name: 'Sam Robinson', type: 'sam.robinson@pwc.com', icon:'../images/Screen Shot 2017-02-08 at 3.47.59 PM.png' },
+  { name: 'Jack Chavez', type: 'jack.chavez@pwc.com', icon:'../images/Screen Shot 2017-02-08 at 3.48.03 PM.png'  },
+  { name: 'Wayne Hayes', type: 'wayne.hayes@pwc.com', icon:'../images/Screen Shot 2017-02-08 at 3.48.08 PM.png' },
+  { name: 'Frank Porter', type: 'frank.porter@pwc.com' , icon:'../images/Screen Shot 2017-02-08 at 3.48.19 PM.png' },
+  { name: 'Ronald Smith', type: 'ronald.smith@pwc.com' , icon:'../images/Screen Shot 2017-02-08 at 3.48.23 PM.png' },
+  { name: 'Ida McCormick', type: 'ida.mccormick@pwc.com' , icon:'../images/Screen Shot 2017-02-08 at 3.47.59 PM.png' }
 ];
 
 function onSelect(suggestion, data) {
@@ -47,6 +51,15 @@ class BuddleModalForm extends React.Component{
     this.setState({ suggestions });
   }
 
+  componentDidMount(){
+    this.props.form.setFieldsValue({
+      name:'Retail',
+      type:'Project',
+      description:'',
+      dateRange:[moment('2017-02-27', dateFormat)],
+      // cooperator: Mention.toEditorState('@Sam @Jack @Wayne @Frank @Ronald @Ida')
+    })
+  }
 
   render(){
     const { getFieldDecorator } = this.props.form,
@@ -83,13 +96,21 @@ class BuddleModalForm extends React.Component{
         <Row gutter={40}>
           <Col span={24}>
             <FormItem label="Who's joining">
-              {getFieldDecorator('cooperator')( <Mention
+              {/*{getFieldDecorator('cooperator')( <Mention*/}
+                {/*placeholder="@someone"*/}
+                {/*style={{ width: '100%'}}*/}
+                {/*suggestions={suggestions}*/}
+                {/*onSearchChange={this.onSearchChange}*/}
+                {/*onSelect={onSelect}*/}
+              {/*/>)}*/}
+              <Mention
                 placeholder="@someone"
                 style={{ width: '100%'}}
                 suggestions={suggestions}
                 onSearchChange={this.onSearchChange}
                 onSelect={onSelect}
-              />)}
+                defaultValue={Mention.toEditorState('@Sam @Jack @Wayne @Frank @Ronald @Ida')}
+              />
 
             </FormItem>
           </Col>
@@ -106,7 +127,8 @@ class BuddleModal extends React.Component{
   getFormData(){
     //debugger;
     let {cooperator} = this.refs.form1.getFieldsValue();
-    console.log( this.refs.form1.getFieldsValue(),getMentions(cooperator))
+    console.log( this.refs.form1.getFieldsValue())
+    // console.log( this.refs.form1.getFieldsValue(),getMentions(cooperator))
 
     this.props.close();
   }

@@ -140,8 +140,8 @@ export default class ProjectsView extends React.Component{
     const {type, subType} = this.state;
 
     return (
-      <div style={{height:'100%',overflowY:'scroll',background:'#F2F5F4'}} >
-        <div className="project-container" style={{margin:'60px auto', width:'80%'}}>
+      <div style={{background:'#F2F5F4'}} >
+        <div className="project-container" style={{margin:'0 auto',padding:'60px', width:'80%'}}>
           {
             mockProjectList.map((item)=>(
                 <ProjectGroup {...item}/>
