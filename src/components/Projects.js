@@ -7,15 +7,15 @@ import actions from '../actions'
 const mockProjectList = [
   {
     key:1,
-    title: 'Now',
+    title: 'This month',
     items: [
       {
         key:1,
         img:'',
-        projectName: 'RAC Black Friday',
-        description: 'There are many things that are important to catolog design. Your images must be sharp and appealing. Your text and even.',
-        updates:2,
-        during: 'Aug, 4 - Aug, 25',
+        projectName: 'Retail',
+        description: 'evolution of retail, information to right people at a right time',
+        updates:0,
+        during: 'Feb 27,2017 - Today',
         person: [
           {
             img:'asd'
@@ -25,10 +25,42 @@ const mockProjectList = [
       {
         key:2,
         img:'',
-        projectName: 'RAC Black Friday',
-        description: 'There some text',
-        updates:0,
-        during: 'Aug, 4 - Aug, 25',
+        projectName: 'FSO',
+        description: 'Improve field service efficiency with optimized scheduling and location service.',
+        updates:5,
+        during: 'Aug 24, 2016 - Today',
+        person: [
+          {
+            img:'asd'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    key:2,
+    title: 'January',
+    items: [
+      {
+        key:1,
+        img:'',
+        projectName: 'Mobility',
+        description: 'make your journey as easy as possible',
+        updates:1,
+        during: ' Jan 9, 2016 - Jan 22, 2017',
+        person: [
+          {
+            img:'asd'
+          }
+        ]
+      },
+      {
+        key:2,
+        img:'',
+        projectName: 'Salesforce intergration',
+        description: 'See your user and company data, conversations from Intercom inside your Salesforce account',
+        updates:1,
+        during: 'May 15, 2016 - Jan 10, 2017',
         person: [
           {
             img:'asd'
@@ -72,7 +104,7 @@ class ProjectItem extends React.Component{
               <span className="head" style={{backgroundImage:'url('+ require('../images/Screen Shot 2017-02-08 at 3.48.23 PM.png')+')'}}> </span>
             </div>
             <div className="updates">
-              {this.props.updates?`${this.props.updates} NEW UPDATES`:'LAUNCH'}
+              {this.props.updates?`${this.props.updates} NEW UPDATES`:'NEW LAUNCH'}
             </div>
           </div>
         </div>

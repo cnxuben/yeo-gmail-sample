@@ -8,32 +8,84 @@ import A from '../const/actionTypes'
 const mockMailList = [
   {
     key:1,
-    title: 'Most Recent',
+    title: 'Unread',
     items: [
       {
         key: 0,
         from: 'Gene Aguilar',
-        brief: 'Kick off of Business Mail App',
+        brief: 'Kickoff for retail project',
         tag:null,
-        date: 'Feb, 3',
+        date: 'Feb, 27',
+      },
+      {
+        key: 1,
+        from: 'Jack Chavez',
+        brief: '[JIRA] (LAR-713)FSO-512 bug fix for double data',
+        tag: 'orange',
+        date: 'Feb, 27',
+      },
+      {
+        key: 2,
+        from: 'Jerry Mullins',
+        brief: '[Github] Jerry merged code on branch ',
+        tag:'orange',
+        date: 'Feb, 27',
+      },
+      {
+        key: 3,
+        from: 'Ronald Smith',
+        brief: '[business-os/mwc-recognition-demo] changing the button design (#43)',
+        tag:'orange',
+        date: 'Feb, 27',
       }
     ]
   },{
     key:2,
-    title: 'January',
+    title: 'Most recent',
     items: [
       {
         key:1,
-        from: 'Some Person',
-        brief: 'Trip to India',
-        tag:'red',
-        date: 'Jan, 1'
+        from: 'Ronald S(GDrive)',
+        brief: 'FSO - Invitation to collaborate',
+        tag:'orange',
+        date: 'Feb, 25'
       },{
         key:2,
-        from: 'Some Person',
-        brief: 'Trip to India',
-        tag:'red',
-        date: 'Jan, 2'
+        from: 'Amy Robinson',
+        brief: 'New updates from US team of mobility',
+        tag:'yellow',
+        date: 'Feb, 26'
+      },{
+        key:3,
+        from: 'Michelle M(InVision)',
+        brief: 'Re: [FSO V3] Mobile screen 07 [4]',
+        tag:'orange',
+        date: 'Feb, 25'
+      },{
+        key:4,
+        from: 'SDC China Finance',
+        brief: 'Exchange Rate for Per Diem Reporting Purpose - February 2017',
+        tag:'green',
+        date: 'Feb, 25'
+      }
+    ]
+  },
+  {
+    key:3,
+    title: 'This month',
+    items: [
+      {
+        key:1,
+        from: 'American Express',
+        brief: 'ITINERARY for ROBINSON/SAM SAT 3FEB2017 Ref ICEGSE',
+        tag:'purple',
+        date: 'Feb, 20'
+      },{
+        key:2,
+        from: 'PwC China Travel Advisory',
+        brief: 'Concur Hotel Reservation at NEW YORK',
+        tag:'purple',
+        date: 'Feb, 19'
       }
     ]
   }
