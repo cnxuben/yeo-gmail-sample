@@ -11,7 +11,7 @@ const mockProjectList = [
     items: [
       {
         key:1,
-        img:'',
+        img:require('../images/p1.png'),
         projectName: 'Retail',
         description: 'evolution of retail, information to right people at a right time',
         updates:0,
@@ -24,7 +24,7 @@ const mockProjectList = [
       },
       {
         key:2,
-        img:'',
+        img:require('../images/p2.png'),
         projectName: 'FSO',
         description: 'Improve field service efficiency with optimized scheduling and location service.',
         updates:5,
@@ -43,7 +43,7 @@ const mockProjectList = [
     items: [
       {
         key:1,
-        img:'',
+        img:require('../images/p3.png'),
         projectName: 'Mobility',
         description: 'make your journey as easy as possible',
         updates:1,
@@ -56,7 +56,7 @@ const mockProjectList = [
       },
       {
         key:2,
-        img:'',
+        img:require('../images/p4.png'),
         projectName: 'Salesforce intergration',
         description: 'See your user and company data, conversations from Intercom inside your Salesforce account',
         updates:1,
@@ -77,11 +77,13 @@ class ProjectItem extends React.Component{
   }
 
   render() {
+    const {img} = this.props;
     return (
       <div
         className="project-item"
         onClick={this.goToProjectDetail.bind(this)}>
-        <span className="bg" style={{backgroundImage:'url('+ require('../images/sample-proj.jpg')+')'}}> </span>
+        {/*<span className="bg" style={{backgroundImage:'url('+ require(img)+')'}}> </span>*/}
+        <img className="bg" src={img} alt=""/>
         <div className="project-content">
           <div className="project-upper">
             <div className="proj-header">
