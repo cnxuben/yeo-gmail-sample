@@ -10,7 +10,8 @@ export default (currentState, action) => {
           color: action.data.color,
           key: action.data.key,
           newCount: action.data.newCount,
-          title: action.data.title
+          title: action.data.title,
+          realTitle: action.data.realTitle
         }
       ])
       // console.log('project items data: ', updatedState)
