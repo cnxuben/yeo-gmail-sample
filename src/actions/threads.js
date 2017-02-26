@@ -118,7 +118,8 @@ export default {
                 newCount: 1,
                 color: colorList[projects.length],
                 key: projects.length + 1,
-                title: name
+                realTitle: name,
+                title: mockTitles[projects.length]
               }
             })
           } else {
@@ -141,9 +142,15 @@ export default {
 const colorList = [
   'rgb(254, 153, 15)',
   'red',
-  'yellow',
+  'blue',
   'purple',
   'pink',
   'blue',
   'green'
+]
+
+const mockTitles = [
+  'FSO',
+  'Retail',
+  'Mobility'
 ]
