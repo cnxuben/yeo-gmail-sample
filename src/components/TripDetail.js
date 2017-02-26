@@ -17,12 +17,15 @@ export default class TripDetail extends React.Component{
     console.log(num)
   }
 
-
+  goToGoogleDrive() {
+    window.open('https://docs.google.com/a/businessos.net/spreadsheets/d/1LSEmrGFGxvtD4Lbruml1ysSBWHKmOzp2hu0IYmODh1E/edit?usp=sharing')
+  }
 
   render(){
 
     return(
       <div>
+        <div onClick={()=>{this.goToGoogleDrive()}} className="hot-spot go-to-google-drive"></div>
         <div onClick={()=>{this.showModal(1)}} className="hot-spot trip-detail-modal"></div>
         <img  src={require('../images/trip-detail.png')} alt=""/>
 

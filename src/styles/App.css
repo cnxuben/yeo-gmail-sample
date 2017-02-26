@@ -534,9 +534,14 @@ body {
   background: transparent;
   width: 756px;
   height: 700px;
-  top: 200px;
+  top: 260px;
 }
 
+.hot-spot.go-to-google-drive {
+  background: transparent;
+  width: 756px;
+  height: 200px;
+}
 /************* mock modals *****************/
 .proj-detail-modal1 .ant-modal-footer,
 .proj-detail-modal2 .ant-modal-footer,
