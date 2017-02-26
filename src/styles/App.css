@@ -8,6 +8,7 @@ body {
   font-family: sans-serif;
   line-height: 16px;
   letter-spacing: 1px;
+  overflow: hidden;
 }
 
 .index img {
@@ -41,9 +42,9 @@ body {
 .view-container{
   flex-grow: 1;
   overflow: auto;
-  overflow-x: hidden;
+/*  overflow-x: hidden;
   position: relative;
-}
+*/}
 
 .header{
 
