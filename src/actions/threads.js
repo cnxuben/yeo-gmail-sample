@@ -36,9 +36,7 @@ export default {
         userId: 'me',
         labelIds: ['INBOX'],
         // list 30 threads per page
-        // maxResults: 30
-        // now request one email only
-        maxResuls: 1
+        maxResults: 30
       })
       .then((response) => {
         if (response.status !== 200) {
