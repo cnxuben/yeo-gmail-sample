@@ -360,7 +360,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    listThreads: () => dispatch(actions.listThreads()),
+    listThreads: () => dispatch(actions.listThreads())
   }
 }
 

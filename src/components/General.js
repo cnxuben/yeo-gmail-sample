@@ -280,7 +280,7 @@ const mapDispatchToProps = () => {
 const colorList = [
   'rgb(254, 153, 15)',
   'red',
-  'yellow',
+  'blue',
   'purple',
   'pink',
   'blue',
