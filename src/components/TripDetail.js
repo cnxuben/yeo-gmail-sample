@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router'
+// import {Link} from 'react-router'
 import {TripDetail1} from './Modal'
 
 export default class TripDetail extends React.Component{
