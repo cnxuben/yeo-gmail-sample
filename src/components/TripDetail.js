@@ -25,10 +25,9 @@ export default class TripDetail extends React.Component{
 
     return(
       <div>
+        <img className="two-x-img"  src={require('../images/trip-detail@2x.png')} alt=""/>
         <div onClick={()=>{this.goToGoogleDrive()}} className="hot-spot go-to-google-drive"></div>
         <div onClick={()=>{this.showModal(1)}} className="hot-spot trip-detail-modal"></div>
-        <img  src={require('../images/trip-detail.png')} alt=""/>
-
         <TripDetail1 title=""
                      visible={this.state.modal1Visible}
                      onOk={()=>{this.showModal(0)}}

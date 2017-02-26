@@ -161,7 +161,7 @@ class ProjDetail1 extends React.Component{
   render(){
     return(
       <Modal {...this.props} className="override-modal proj-detail-modal1">
-        <img onClick={this.props.onOk} src={require('../images/project-detail-modal1.png')} alt="" style={{width:'100%'}}/>
+        <img onClick={this.props.onOk} src={require('../images/project-detail-modal1@2x.png')} alt="" style={{width:'100%'}}/>
       </Modal>
     )
   }
@@ -171,7 +171,7 @@ class ProjDetail2 extends React.Component{
   render(){
     return(
       <Modal {...this.props} className="override-modal proj-detail-modal2">
-        <img onClick={this.props.onOk} src={require('../images/project-detail-modal2.png')} alt="" style={{width:'100%'}}/>
+        <img onClick={this.props.onOk} src={require('../images/project-detail-modal2@2x.png')} alt="" style={{width:'100%'}}/>
       </Modal>
     )
   }
@@ -181,7 +181,7 @@ class ProjDetail3 extends React.Component{
   render(){
     return(
       <Modal {...this.props} className="override-modal proj-detail-modal3">
-        <img onClick={this.props.onOk} src={require('../images/project-detail-modal3.png')} alt="" style={{width:'100%'}}/>
+        <img onClick={this.props.onOk} src={require('../images/project-detail-modal3@2x.png')} alt="" style={{width:'100%'}}/>
       </Modal>
     )
   }
@@ -192,7 +192,7 @@ class TripDetail1 extends React.Component{
   render(){
     return(
       <Modal {...this.props} className="override-modal trip-detail-modal1">
-        <img onClick={this.props.onOk} src={require('../images/trip-detail-modal1.png')} alt="" style={{width:'100%'}}/>
+        <img onClick={this.props.onOk} src={require('../images/tripmail@2x.png')} alt="" style={{width:'100%'}}/>
       </Modal>
     )
   }

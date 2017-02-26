@@ -25,8 +25,8 @@ export default class ProjectDetail extends React.Component{
 
     return(
       <div>
+        <img className="two-x-img"  src={require('../images/project-detail@2x.png')} alt=""/>
         <div onClick={()=>{this.showModal(1)}} className="hot-spot proj-detail-modal-1"></div>
-        <img  src={require('../images/project-detail.png')} alt=""/>
         <ProjDetail1 title=""
                      visible={this.state.modal1Visible}
                      onOk={()=>{this.showModal(2)}}
