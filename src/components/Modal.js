@@ -55,14 +55,14 @@ class BuddleModalForm extends React.Component{
       <Form onSubmit={this.handleSubmit}>
         <Row gutter={40}>
           <Col span={12}>
-            <FormItem label="Buddle Name">
+            <FormItem label="Name">
               {getFieldDecorator('name')(<Input placeholder=""/>)}
             </FormItem>
           </Col>
         </Row>
         <Row gutter={40}>
           <Col span={12}>
-            <FormItem label="Buddle Type">
+            <FormItem label="Type">
               {getFieldDecorator('type')(<Input placeholder=""/>)}
             </FormItem>
           </Col>
@@ -82,7 +82,7 @@ class BuddleModalForm extends React.Component{
         </Row>
         <Row gutter={40}>
           <Col span={24}>
-            <FormItem label="Cooperators">
+            <FormItem label="Who's joining">
               {getFieldDecorator('cooperator')( <Mention
                 placeholder="@someone"
                 style={{ width: '100%'}}

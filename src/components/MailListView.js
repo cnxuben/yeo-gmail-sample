@@ -23,7 +23,7 @@ function doIconAction(type) {
         type: A.OPEN_BUNDLE_DIALOG
       })
       break
-    case 'Trips':
+    case 'Business Trip':
       store.dispatch(actions.routeTo('trip'))
       break
   }
@@ -238,7 +238,7 @@ class MailListView extends React.Component {
       <div className="main-layout">
         <header className="header" style={styles.container} >
           <div className="icon-group" style={styles.iconGroup}>
-            <span style={{fontSize:18,color:'#7d7d7d'}}><span style={{fontSize:20,color:'#1CD67C'}}>B</span>usiness Mail</span>
+            <span style={{fontSize:18,color:'#7d7d7d'}}><span style={{fontSize:20,color:'#1CD67C'}}>M</span>&MAIL</span>
           </div>
           <div className="search-group" style={styles.searchGroup}>
             <Search
@@ -249,14 +249,14 @@ class MailListView extends React.Component {
             />
           </div>
           <div className="nav-menu-group" style={styles.navMenu}>
-            <div className="hangout"><Icon type="aliwangwang" style={{transform:'rotateZ(180deg)'} }/></div>
+            <div className="hangout"><Icon type="" style={{transform:'rotateZ(180deg)'} }/></div>
             <div className="user-group">
               <div className="head-portrait">
                 <span href="#" style={{background:'url('+ require('../images/sample-portrait.jpg')+')',backgroundSize:'cover'}}> </span>
               </div>
               <div style={{paddingLeft:'1rem'}} className="user-name">
               <span>
-                Aragaki Yui
+                Sam Robinson
               </span>
               </div>
             </div>
@@ -268,13 +268,13 @@ class MailListView extends React.Component {
         <div className="main-content">
           <aside className="left-menu">
             <div className="compose-btn-container">
-              <Button  onClick={e =>{ console.log('Compose', e) }}><Icon type="edit" />Compose</Button>
+              <Button  onClick={e =>{ console.log('Compose', e) }}><Icon type="edit" />COMPOSE</Button>
             </div>
             <div className="inbox-group">
               <div className={`inbox-item inbox ${ this.state.viewFilter === 'inbox'?'active':'' }`}  onClick={ ()=>{this.toMailList('general')}}>
                 <Icon type="mail" />
                 <span className="inbox-title">Inbox</span>
-                <span className="new-mail-count">2</span>
+                <span className="new-mail-count">4</span>
               </div>
               <div className="inbox-item starred" onClick={ ()=>{this.showModal('newProject')}}>
                 <Icon type="star-o" />
@@ -294,7 +294,7 @@ class MailListView extends React.Component {
             </div>
             <hr/>
             <div className="buddles-group">
-              <h5>BUDDLES</h5>
+              <h5>CATEGORIES</h5>
               <Collapse bordered={false} defaultActiveKey={['1','2','3']}>
                 {mockBuddles.map(item=>{
                   let {iconType,title,key} = item;
@@ -321,7 +321,7 @@ class MailListView extends React.Component {
         </div>
 
 
-        <NewProjModal title="Seems you are starting a new Project?"
+        <NewProjModal title="Seems you just started with a new project"
                       visible={dialog.projOpen}
                       onOk={()=>{this.closeModal('newProject')}}
                       onCancel={()=>{this.closeAll()}}
@@ -331,7 +331,7 @@ class MailListView extends React.Component {
                       width="50%"
                       className="override-modal"/>
 
-        <BuddleModal title="Create new buddle"
+        <BuddleModal title="Create a new catagory"
                      visible={dialog.bundleOpen}
                      close={()=>{this.closeModal('newBuddle')}}
                      onCancel={()=>{this.closeModal('newBuddle')}}
@@ -404,27 +404,78 @@ let mockBuddles = [
     // ]
   },
   {
-    title:'Trips',
-    iconType:'rocket',
+    title:'Event',
+    iconType:'folder',
     key:2,
     items:[
       {
         key:1,
-        color:'blue',
-        title:'Larson',
+        color:'#D582B8',
+        title:'Partner Visiting',
         newCount:0
-      }
+      },{
+        key:2,
+        color:'#8F7D66',
+        title:'Team Utilization',
+        newCount:0
+      },{
+        key:3,
+        color:null,
+        title:'...more',
+        newCount:0
+      },
     ]
   },
   {
-    title:'Others',
-    iconType:'appstore-o',
+    title:'Business Trip',
+    iconType:'rocket',
     key:3,
     items:[
       {
         key:1,
-        color:'green',
-        title:'Larson',
+        color:'purple',
+        title:'New York',
+        newCount:0
+      },{
+        key:2,
+        color:'#1CD6A2',
+        title:'Atlanta',
+        newCount:0
+      },{
+        key:3,
+        color:'#7ED321',
+        title:'London',
+        newCount:0
+      },
+    ]
+  },
+  {
+    title:'General',
+    iconType:'calendar',
+    key:4,
+    items:[
+      {
+        key:1,
+        color:'#8891D4',
+        title:'Ethics & Compli...',
+        newCount:0
+      },
+      {
+        key:2,
+        color:'#60AAB7',
+        title:'Learning & Deve...',
+        newCount:0
+      },
+      {
+        key:3,
+        color:'#AFCD8F',
+        title:'Club',
+        newCount:0
+      },
+      {
+        key:4,
+        color:null,
+        title:'...more',
         newCount:0
       }
     ]
@@ -438,7 +489,8 @@ const colorList = [
   'purple',
   'pink',
   'blue',
-  'green'
+  'green',
+  'orange',
 ]
 
 export default connect(mapStateToProps, mapDispatchToProps)(MailListView)
