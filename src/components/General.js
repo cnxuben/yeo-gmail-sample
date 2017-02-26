@@ -12,7 +12,7 @@ const mockMailList = [
     title: 'Unread',
     items: [
       {
-        key: 0,
+        key: 1,
         from: 'Gene Aguilar',
         brief: 'Kickoff for retail project',
         tag:null,
@@ -20,7 +20,7 @@ const mockMailList = [
         unique: 1
       },
       {
-        key: 1,
+        key: 2,
         from: 'Jack Chavez',
         brief: '[JIRA] (LAR-713)FSO-512 bug fix for double data',
         tag: 'orange',
@@ -28,7 +28,7 @@ const mockMailList = [
         unique: 2
       },
       {
-        key: 2,
+        key: 3,
         from: 'Jerry Mullins',
         brief: '[Github] Jerry merged code on branch ',
         tag:'orange',
@@ -36,7 +36,7 @@ const mockMailList = [
         unique: 3
       },
       {
-        key: 3,
+        key: 4,
         from: 'Ronald Smith',
         brief: '[business-os/mwc-recognition-demo] changing the button design (#43)',
         tag:'orange',
@@ -135,6 +135,8 @@ class MailListItem extends React.Component{
 
   render(){
     const state = this.state;
+    const item = this.props.item ? this.props.item : {}
+    console.log(headShots[item.unique])
     let img = mockHeadshot[~~(Math.random()*6)];
     return(
       <div className="mail-list-item">
@@ -145,17 +147,20 @@ class MailListItem extends React.Component{
             </div>
             <div className="portrait">
 {/*              <span href="#" style={{background:'url('+ require('../images/sample-portrait.jpg')+')', backgroundSize:'cover'}}> </span>*/}
-              <span href="#" style={{background: `url('${headShots[this.props.unique - 1]}')`, backgroundSize:'cover'}}> </span>
+{/*              <span href="#" style={{background: `url('${headShots[item.unique]}')`, backgroundSize:'cover'}}> </span>*/}
+              <img
+                src={headShots[item.unique]}
+                style={{height: 30, width: 30, borderRadius: '50%'}}/>
             </div>
           </div>
 
-          <div className="fromName">{this.props.from}</div>
-          <div className="brief">{this.props.brief}</div>
+          <div className="fromName">{item.from}</div>
+          <div className="brief">{item.brief}</div>
           <div className="mail-right-group">
-            { this.props.tag ? <span style={{background:this.props.tag,height:7,width:7,borderRadius:'50%'}}> </span> :
+            { item.tag ? <span style={{background:item.tag,height:7,width:7,borderRadius:'50%'}}> </span> :
               <span className="unset-icon" onClick={this.showModal}>?</span>
             }
-            <span style={{paddingLeft:10}}>{this.props.date}</span>
+            <span style={{paddingLeft:10}}>{item.date}</span>
           </div>
       </div>
     )
@@ -164,14 +169,32 @@ class MailListItem extends React.Component{
 
 class MailListGroup extends React.Component{
   render(){
+    const isGroupOne = (this.props.group.key === 1)
+    const items = this.props.group.items
+    const realMail = this.props.realMail
     return (
     <div>
       <div className="mail-group-title">{this.props.title}</div>
       <div className="mail-list">
         {
-          this.props.items ? this.props.items.map(item=>{
-            return (<MailListItem {...item}/>)
-          }) : null
+          // this.props.group.items ? this.props.group.items.map(item=>{
+          //   return (<MailListItem {...item}/>)
+          // }) : null
+          isGroupOne && items ? (
+            <div>
+              <MailListItem
+                item={realMail}/>
+              {
+                items.map((item) => {return <MailListItem item={item}/>})
+              }
+            </div>
+          ) : (
+            <div>
+              {
+                items.map((item) => {return <MailListItem item={item}/>})
+              }
+            </div>
+          )
         }
 
       </div>
@@ -240,7 +263,17 @@ class GeneralView extends React.Component {
   render() {
     const state = this.state;
     //mockMailList[0].items = [...mockMailList[0].items, ...this.getMailList()||null]
-    // mockMailList[1].items =
+    const firstThread = this.props.threads ? Object.values(this.props.threads)[0] : null
+    let realMail = firstThread ? {
+      key: 0,
+      from: firstThread.members ? firstThread.members[0] : '',
+      brief: firstThread.snippet,
+      tag: null,
+      date: firstThread.formatUpdateTime ? firstThread.formatUpdateTime : '',
+      unique: 0,
+      real: true,
+    } : null
+    // console.log('mockMailList: ', mockMailList[0].items)
 
     return (
       <div style={{height:'100%'}}>
@@ -262,9 +295,12 @@ class GeneralView extends React.Component {
           </div>
 
         </div>
-        {mockMailList.map(group=>{
+        {mockMailList.map((group, index) => {
           return (
-            <MailListGroup {...group} />
+            <MailListGroup
+              group={group}
+              realMail={realMail}
+              key={index}/>
           )
         })}
 
