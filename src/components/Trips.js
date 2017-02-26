@@ -19,8 +19,8 @@ export default class TripsView extends React.Component{
 
     return(
       <div>
+        <img className="two-x-img"  src={require('../images/trip-main@2x.png')} alt=""/>
         <div onClick={()=>{this.goToTripDetail()}} className="hot-spot trip-main"></div>
-        <img  src={require('../images/trip-main.png')} alt=""/>
       </div>
     )
   }

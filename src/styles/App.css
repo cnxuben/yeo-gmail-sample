@@ -553,3 +553,8 @@ body {
 .trip-detail-modal1 .ant-modal-footer{
   display: none;
 }
+
+.two-x-img{
+  transform: scale(.5);
+  transform-origin: 0 0;
+}
