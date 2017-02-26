@@ -135,8 +135,6 @@ class MailListItem extends React.Component{
 
   render(){
     const state = this.state;
-    // console.log('headshots are: ', headShots)
-    console.log('****** this.props are: ', headShots[this.props.unique - 1])
     let img = mockHeadshot[~~(Math.random()*6)];
     return(
       <div className="mail-list-item">
@@ -146,8 +144,8 @@ class MailListItem extends React.Component{
               <Icon type={state.like? "star":"star-o"}  style={{color: (state.like? '#ff9a00': 'inherit') }}/>
             </div>
             <div className="portrait">
-{/*              <span href="#" style={{background:'url('+ require('../images/sample-portrait.jpg')+')', backgroundSize:'cover'}}> </span>
-*/}              <span href="#" style={{background: `url('${headShots[this.props.unique - 1]}')`, backgroundSize:'cover'}}> </span>
+{/*              <span href="#" style={{background:'url('+ require('../images/sample-portrait.jpg')+')', backgroundSize:'cover'}}> </span>*/}
+              <span href="#" style={{background: `url('${headShots[this.props.unique - 1]}')`, backgroundSize:'cover'}}> </span>
             </div>
           </div>
 
