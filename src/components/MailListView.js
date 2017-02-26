@@ -31,7 +31,10 @@ function doIconAction(type) {
 
 const PanelHeader = (props)=>(
   <div
-    onClick={() => {doIconAction(props.title)}}
+    onClick={(e) => {
+      e.stopPropagation()
+      doIconAction(props.title)
+    }}
     className="panel-header">
     <Icon type={props.iconType} />
     <span className="panel-header-title" >{props.title||'Some Type'}</span>
