@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import store from '../store'
 import A from '../const/actionTypes'
+import { headShots } from '../const/headshots'
 
 const mockMailList = [
   {
@@ -16,6 +17,7 @@ const mockMailList = [
         brief: 'Kickoff for retail project',
         tag:null,
         date: 'Feb, 27',
+        unique: 1
       },
       {
         key: 1,
@@ -23,6 +25,7 @@ const mockMailList = [
         brief: '[JIRA] (LAR-713)FSO-512 bug fix for double data',
         tag: 'orange',
         date: 'Feb, 27',
+        unique: 2
       },
       {
         key: 2,
@@ -30,6 +33,7 @@ const mockMailList = [
         brief: '[Github] Jerry merged code on branch ',
         tag:'orange',
         date: 'Feb, 27',
+        unique: 3
       },
       {
         key: 3,
@@ -37,6 +41,7 @@ const mockMailList = [
         brief: '[business-os/mwc-recognition-demo] changing the button design (#43)',
         tag:'orange',
         date: 'Feb, 27',
+        unique: 4
       }
     ]
   },{
@@ -48,25 +53,29 @@ const mockMailList = [
         from: 'Ronald S(GDrive)',
         brief: 'FSO - Invitation to collaborate',
         tag:'orange',
-        date: 'Feb, 25'
+        date: 'Feb, 25',
+        unique: 5
       },{
         key:2,
         from: 'Amy Robinson',
         brief: 'New updates from US team of mobility',
         tag:'yellow',
-        date: 'Feb, 26'
+        date: 'Feb, 26',
+        unique: 6
       },{
         key:3,
         from: 'Michelle M(InVision)',
         brief: 'Re: [FSO V3] Mobile screen 07 [4]',
         tag:'orange',
-        date: 'Feb, 25'
+        date: 'Feb, 25',
+        unique: 7
       },{
         key:4,
         from: 'SDC China Finance',
         brief: 'Exchange Rate for Per Diem Reporting Purpose - February 2017',
         tag:'green',
-        date: 'Feb, 25'
+        date: 'Feb, 25',
+        unique: 8
       }
     ]
   },
@@ -79,13 +88,15 @@ const mockMailList = [
         from: 'American Express',
         brief: 'ITINERARY for ROBINSON/SAM SAT 3FEB2017 Ref ICEGSE',
         tag:'purple',
-        date: 'Feb, 20'
+        date: 'Feb, 20',
+        unique: 9
       },{
         key:2,
         from: 'PwC China Travel Advisory',
         brief: 'Concur Hotel Reservation at NEW YORK',
         tag:'purple',
-        date: 'Feb, 19'
+        date: 'Feb, 19',
+        unique: 10
       }
     ]
   }
@@ -124,6 +135,8 @@ class MailListItem extends React.Component{
 
   render(){
     const state = this.state;
+    // console.log('headshots are: ', headShots)
+    console.log('****** this.props are: ', headShots[this.props.unique - 1])
     let img = mockHeadshot[~~(Math.random()*6)];
     return(
       <div className="mail-list-item">
@@ -133,7 +146,8 @@ class MailListItem extends React.Component{
               <Icon type={state.like? "star":"star-o"}  style={{color: (state.like? '#ff9a00': 'inherit') }}/>
             </div>
             <div className="portrait">
-              <span href="#" style={{background:'url('+ require('../images/sample-portrait.jpg')+')', backgroundSize:'cover'}}> </span>
+{/*              <span href="#" style={{background:'url('+ require('../images/sample-portrait.jpg')+')', backgroundSize:'cover'}}> </span>
+*/}              <span href="#" style={{background: `url('${headShots[this.props.unique - 1]}')`, backgroundSize:'cover'}}> </span>
             </div>
           </div>
 
